@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+.DS_Store
+blenderkit/
+.qodo/
+Screenshot *.png
+nothing-font copy.otf.otf
+npm-debug.log*

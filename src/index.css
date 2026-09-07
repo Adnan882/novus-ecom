@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------- Theme tokens ---------------- */
+:root {
+  color-scheme: light;
+  /* light — Alabaster / Pastel Gray / Charleston Green / Blue / Dark Sky */
+  --tv-midnight: 240 235 229;
+  --tv-deep: 246 242 235;
+  --tv-panel: 220 208 190;
+  --tv-card: 208 194 168;
+  --tv-line: 202 188 164;
+  --tv-mist: 122 111 100;
+  --tv-ink: 42 40 41;
+  --tv-ink-2: 96 88 82;
+  --tv-glow: 38 58 153;
+  --tv-glow-ink: 255 255 255;
+  --tv-glow-hover: 30 47 128;
+  --tv-aqua: 151 180 222;
+  --tv-glass-bg: rgba(240, 235, 229, 0.72);
+  --tv-glass-border: rgba(42, 40, 41, 0.14);
+}
+
+.dark {
+  color-scheme: dark;
+  /* dark — derived charcoal + light accents */
+  --tv-midnight: 24 22 22;
+  --tv-deep: 30 28 28;
+  --tv-panel: 37 34 33;
+  --tv-card: 43 40 39;
+  --tv-line: 55 51 49;
+  --tv-mist: 168 160 151;
+  --tv-ink: 240 235 229;
+  --tv-ink-2: 214 206 196;
+  --tv-glow: 151 180 222;
+  --tv-glow-ink: 24 22 22;
+  --tv-glow-hover: 168 196 230;
+  --tv-aqua: 151 180 222;
+  --tv-glass-bg: rgba(30, 28, 28, 0.62);
+  --tv-glass-border: rgba(240, 235, 229, 0.14);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-midnight text-ink font-sans antialiased overflow-x-hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    font-feature-settings: 'cv05', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--tv-midnight));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--tv-line));
+    border-radius: 10px;
+    border: 2px solid rgb(var(--tv-midnight));
+  }
+  :-webkit-any-link:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  a:focus-visible {
+    outline: 2px solid rgb(var(--tv-glow));
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(var(--tv-glow) / 0.25);
+  }
+}
+
+/* ---------------- Minimal surfaces ---------------- */
+@layer components {
+  /* Quiet frosted surface — used for overlays & floating chrome only */
+  .glass {
+    background: var(--tv-glass-bg);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--tv-glass-border);
+  }
+
+  /* Card-like frosted surface */
+  .lens {
+    position: relative;
+    background: var(--tv-glass-bg);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--tv-glass-border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .panel {
+    @apply bg-panel/90 border border-line;
+  }
+
+  /* Solid accent text — single color, no neon gradient */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, rgb(var(--tv-glow)), rgb(var(--tv-glow-hover)));
+    font-family: inherit;
+    letter-spacing: inherit;
+  }
+
+  .btn-glow {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+    background: rgb(var(--tv-glow));
+    color: rgb(var(--tv-glow-ink));
+    box-shadow: 0 1px 2px rgb(var(--tv-glow) / 0.35);
+  }
+  .btn-glow:hover {
+    background: rgb(var(--tv-glow-hover));
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] border border-line text-ink-2 hover:border-ink-2 hover:bg-ink/5;
+  }
+
+  .input-dark {
+    @apply w-full rounded-xl bg-panel border border-line px-4 py-3 text-sm text-ink outline-none transition-all placeholder:text-mist/60 focus:border-glow focus:ring-2 focus:ring-glow/20;
+  }
+
+  .chip {
+    @apply rounded-lg border border-line bg-panel px-3 py-1 text-xs text-mist;
+  }
+
+  /* Animated link underline — restrained, single accent */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1.5px;
+    width: 100%;
+    border-radius: 999px;
+    background: rgb(var(--tv-glow));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---------- Responsive & device refinements ---------- */
+
+/* Respect notched-phone safe areas on fixed chrome */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-top { padding-top: env(safe-area-inset-top); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+}
+
+/* Prevent iOS 100vh jumpiness / elastic issues */
+html, body {
+  overscroll-behavior-y: none;
+}
+
+/* Comfortable type on tiny screens */
+@media (max-width: 380px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Reduce motion for vestibular-safety users */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
