@@ -3,6 +3,10 @@
 
 const inr = (n) => `₹${n.toLocaleString('en-IN')}`
 
+// Base-aware public asset prefix (works at '/images/...' in dev and
+// '/novus-ecom/images/...' when deployed to a subpath like GitHub Pages).
+const img = (p) => `${import.meta.env.BASE_URL}images/${p}`
+
 export const PRODUCTS = [
   {
     id: 'ap-pro-2',
@@ -10,7 +14,7 @@ export const PRODUCTS = [
     name: 'AirPods Pro 2',
     category: 'airpods',
     model: 'airpods',
-    image: '/images/airpods.jpg',
+    image: img('airpods.jpg'),
     tagline: 'Wireless earbuds with active noise cancelling',
     price: 1899,
     mrp: 29999,
@@ -31,7 +35,7 @@ export const PRODUCTS = [
     name: 'Apple Watch S9',
     category: 'watches',
     model: 'smartwatch',
-    image: '/images/apple-watch.jpg',
+    image: img('apple-watch.jpg'),
     tagline: 'Your health companion, every day',
     price: 2999,
     mrp: 45900,
@@ -52,7 +56,7 @@ export const PRODUCTS = [
     name: 'MagSafe Charger',
     category: 'accessories',
     model: 'powerbank',
-    image: '/images/magsafe.jpg',
+    image: img('magsafe.jpg'),
     tagline: 'Snap-on wireless fast charging',
     price: 999,
     mrp: 10900,
@@ -73,7 +77,7 @@ export const PRODUCTS = [
     name: 'Apple Watch Ultra',
     category: 'watches',
     model: 'smartwatch',
-    image: '/images/apple-watch-ultra.jpg',
+    image: img('apple-watch-ultra.jpg'),
     tagline: 'Titanium rugged smartwatch',
     price: 4499,
     mrp: 69900,
@@ -94,7 +98,7 @@ export const PRODUCTS = [
     name: 'AirPods Max',
     category: 'airpods',
     model: 'airpodsmax',
-    image: '/images/airpods-max.jpg',
+    image: img('airpods-max.jpg'),
     tagline: 'Over-ear premium at a fraction of the price',
     price: 6499,
     mrp: 59900,
