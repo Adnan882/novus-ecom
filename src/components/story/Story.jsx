@@ -98,73 +98,76 @@ function FlipDigit({ d, index }) {
   )
 }
 
-function Chapter({ c, i, onExplore, setRef, progress }) {
-  const ref = useRef()
+function Chapter({ c, i, onExplore, progress }) {
   const Icon = c.icon
   const right = c.align === 'right'
   const product = PRODUCTS.find((p) => p.id === c.product)
   const sideX = right ? -1 : 1
 
-  // Chapter i's slot in section progress — exactly the same window the counter
-  // shows number i, so the text sequences stay in sync with the counter.
+  // Chapter i's slot in section progress — exactly the window the counter
+  // shows number i. The text sweeps bottom → top across that whole window so
+  // it enters at the bottom edge and exits at the top, in lockstep with the counter.
   const a = i / N
   const b = (i + 1) / N
-  const opacity = useTransform(progress, [a + 0.005, a + 0.04, b - 0.02, b - 0.005], [0, 1, 1, 0])
-  const y = useTransform(progress, [a + 0.005, a + 0.05, b - 0.02, b - 0.005], [44, 0, 0, -44])
-  const imgOpacity = useTransform(progress, [a + 0.01, a + 0.05, b - 0.02, b - 0.005], [0, 1, 1, 0])
-  const imgX = useTransform(progress, [a, a + 0.05, b - 0.04, b], [sideX * 70, 0, 0, sideX * 70])
-  const imgRotate = useTransform(progress, [a, a + 0.05, b - 0.04, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
+  const textY = useTransform(progress, [a, b], ['58vh', '-58vh'])
+  const opacity = useTransform(progress, [a + 0.01, a + 0.05, b - 0.05, b - 0.01], [0, 1, 1, 0])
+  const imgY = useTransform(progress, [a, b], ['64vh', '-64vh'])
+  const imgOpacity = useTransform(progress, [a + 0.03, a + 0.08, b - 0.08, b - 0.03], [0, 1, 1, 0])
+  const imgX = useTransform(progress, [a, a + 0.08, b - 0.08, b], [sideX * 24, 0, 0, sideX * 24])
+  const imgRotate = useTransform(progress, [a, a + 0.08, b - 0.08, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
 
   return (
-    <div
-      ref={(el) => {
-        ref.current = el
-        setRef?.(el)
-      }}
-      className="relative h-screen w-full pointer-events-none"
-    >
-      {/* Image on the opposite side of the text box */}
+    <div className="absolute inset-0 h-screen w-full pointer-events-none">
+      {/* Image on the opposite side of the text box, sweeping with it */}
       {product && (
-        <motion.div
-          style={{ opacity: imgOpacity, x: imgX, rotate: imgRotate }}
-          className={`absolute top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center ${right ? 'lg:left-[6%]' : 'lg:right-[6%]'}`}
-        >
-          <div className="w-72 h-72 sm:w-80 sm:h-80 lg:h-[min(24rem,52vh)] lg:w-[min(24rem,52vw)] xl:h-[min(28rem,52vh)] xl:w-[min(28rem,52vw)] rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
-            <ProductImage product={product} className="w-full h-full object-contain" />
-          </div>
+        <motion.div style={{ y: imgY, opacity: imgOpacity }} className="absolute inset-0 hidden lg:flex pointer-events-none">
+          <motion.div
+            style={{ x: imgX, rotate: imgRotate }}
+            className={`absolute top-1/2 -translate-y-1/2 flex items-center justify-center ${right ? 'lg:left-[6%]' : 'lg:right-[6%]'}`}
+          >
+            <div className="w-72 h-72 sm:w-80 sm:h-80 lg:h-[min(24rem,52vh)] lg:w-[min(24rem,52vw)] xl:h-[min(28rem,52vh)] xl:w-[min(28rem,52vw)] rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
+              <ProductImage product={product} className="w-full h-full object-contain" />
+            </div>
+          </motion.div>
         </motion.div>
       )}
 
+      {/* Text box — travels bottom to top across its slot */}
       <motion.div
-        style={{ opacity, y }}
-        className={`absolute top-1/2 -translate-y-1/2 w-full max-w-md px-6 sm:px-8 ${right ? 'lg:left-auto lg:right-0' : ''} ${right ? 'lg:ml-auto' : ''}`}
+        style={{ y: textY }}
+        className={`absolute left-0 right-0 top-0 h-screen flex pointer-events-none ${right ? 'justify-end' : 'justify-start'}`}
       >
-        <div className={`relative ${right ? 'lg:mr-[12%]' : 'lg:ml-[8%]'}`}>
-          <div className="flex items-center gap-3 mb-4">
-            <span className={`w-11 h-11 rounded-2xl border flex items-center justify-center ${c.accent}`}>
-              <Icon className="w-5 h-5" />
-            </span>
-            <span className="font-mono text-xs tracking-[0.3em] text-mist uppercase">
-              {c.kicker}
-            </span>
-          </div>
+        <motion.div
+          style={{ opacity }}
+          className={`w-full max-w-md px-6 sm:px-8 ${right ? 'lg:mr-[12%]' : 'lg:ml-[8%]'}`}
+        >
+          <div className="relative pointer-events-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <span className={`w-11 h-11 rounded-2xl border flex items-center justify-center ${c.accent}`}>
+                <Icon className="w-5 h-5" />
+              </span>
+              <span className="font-mono text-xs tracking-[0.3em] text-mist uppercase">
+                {c.kicker}
+              </span>
+            </div>
 
-          <div className="pointer-events-auto rounded-3xl bg-panel border border-line p-6 sm:p-8 transition-colors duration-300">
-            <span className="block font-mono text-sm font-bold text-mist pb-2 mb-3 border-b border-line">{c.no}</span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-ink leading-tight mb-3">
-              {c.title}
-            </h3>
-            <p className="text-sm sm:text-base text-mist leading-relaxed mb-5">{c.body}</p>
-            {i === N - 1 && (
-              <button
-                onClick={onExplore}
-                className="inline-flex items-center gap-2 rounded-xl bg-glow text-glow-ink text-sm font-bold px-5 py-2.5 hover:opacity-90 transition-opacity"
-              >
-                Explore the range <ArrowRight className="w-4 h-4" />
-              </button>
-            )}
+            <div className="rounded-3xl bg-panel border border-line p-6 sm:p-8 transition-colors duration-300">
+              <span className="block font-mono text-sm font-bold text-mist pb-2 mb-3 border-b border-line">{c.no}</span>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-ink leading-tight mb-3">
+                {c.title}
+              </h3>
+              <p className="text-sm sm:text-base text-mist leading-relaxed mb-5">{c.body}</p>
+              {i === N - 1 && (
+                <button
+                  onClick={onExplore}
+                  className="inline-flex items-center gap-2 rounded-xl bg-glow text-glow-ink text-sm font-bold px-5 py-2.5 hover:opacity-90 transition-opacity"
+                >
+                  Explore the range <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   )
@@ -172,7 +175,6 @@ function Chapter({ c, i, onExplore, setRef, progress }) {
 
 export default function Story({ onExplore }) {
   const wrapRef = useRef(null)
-  const chapterRefs = useRef([])
   const [active, setActive] = useState(0)
 
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ['start start', 'end end'] })
@@ -182,11 +184,14 @@ export default function Story({ onExplore }) {
   })
 
   const jump = (i) => {
-    chapterRefs.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = wrapRef.current
+    if (!el) return
+    const target = el.offsetTop + (i / N) * (el.offsetHeight - window.innerHeight)
+    window.scrollTo({ top: target, behavior: 'smooth' })
   }
 
   return (
-    <section id="story" ref={wrapRef} className="relative bg-midnight overflow-x-clip transition-colors duration-300">
+    <section id="story" ref={wrapRef} style={{ height: `${N * 100}vh` }} className="relative bg-midnight overflow-x-clip transition-colors duration-300">
       {/* progress hairline */}
       <div className="absolute top-0 left-0 right-0 h-[3px] z-40">
         <motion.div style={{ scaleX: scrollYProgress }} className="h-full origin-left bg-glow" />
@@ -210,6 +215,19 @@ export default function Story({ onExplore }) {
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight/90 to-transparent pointer-events-none transition-colors duration-300" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-midnight to-transparent pointer-events-none transition-colors duration-300" />
 
+        {/* Chapters overlay — text sweeps bottom → top through the pinned stage */}
+        <div className="absolute inset-0 z-30">
+          {CH.map((c, i) => (
+            <Chapter
+              key={c.no}
+              c={c}
+              i={i}
+              onExplore={onExplore}
+              progress={scrollYProgress}
+            />
+          ))}
+        </div>
+
         {/* Chapter rail */}
         <div className="hidden lg:flex absolute right-5 top-1/2 -translate-y-1/2 z-40 flex-col items-end gap-1">
           {CH.map((c, i) => (
@@ -225,20 +243,6 @@ export default function Story({ onExplore }) {
             </button>
           ))}
         </div>
-      </div>
-
-      {/* Chapters overlay */}
-      <div className="relative">
-        {CH.map((c, i) => (
-          <Chapter
-            key={c.no}
-            c={c}
-            i={i}
-            onExplore={onExplore}
-            progress={scrollYProgress}
-            setRef={(el) => (chapterRefs.current[i] = el)}
-          />
-        ))}
       </div>
     </section>
   )
