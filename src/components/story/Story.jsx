@@ -88,7 +88,7 @@ function FlipDigit({ d, index }) {
           animate={{ opacity: 1, rotateX: 0, y: 0 }}
           exit={{ opacity: 0, rotateX: 90, y: 10 }}
           transition={{ duration: 0.55, delay: index * 0.09, ease: [0.32, 0.72, 0, 1] }}
-          className="absolute inset-0 flex items-center justify-center font-mono font-black text-5xl sm:text-7xl md:text-8xl text-ink"
+          className="absolute inset-0 flex items-center justify-center font-mono font-black text-5xl sm:text-7xl md:text-8xl text-white dark:text-black"
           style={{ transformStyle: 'preserve-3d', transformOrigin: '50% 50%', backfaceVisibility: 'hidden' }}
         >
           {d}
@@ -194,7 +194,7 @@ export default function Story({ onExplore }) {
           <div className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
             {CH[active]?.kicker}
           </div>
-          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-2xl bg-black dark:bg-white border border-black/25 dark:border-white/25 shadow-[0_12px_32px_rgba(0,0,0,0.3)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.07)]">
             {(CH[active]?.no || '').split('').map((d, i) => (
               <FlipDigit key={`${CH[active]?.no}-${i}`} d={d} index={i} />
             ))}
