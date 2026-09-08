@@ -1,11 +1,14 @@
 node_modules/
 dist/
+# Secret env files (keep .env.example tracked as the template)
 .env
 .env.local
 .env.*.local
+!.env.example
 .DS_Store
 blenderkit/
 .qodo/
 Screenshot *.png
 nothing-font copy.otf.otf
 npm-debug.log*
+.vercel

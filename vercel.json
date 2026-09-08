@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/:path((?!assets/|images/|fonts/|models/).*)", "destination": "/index.html" }
+  ]
+}
