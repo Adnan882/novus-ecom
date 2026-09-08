@@ -172,6 +172,7 @@ export default function Story({ onExplore }) {
   const [active, setActive] = useState(0)
 
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ['start start', 'end end'] })
+  const counterOpacity = useTransform(scrollYProgress, [0, 0.05, 0.15, 0.8, 0.9], [0, 0, 1, 1, 0])
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     setActive(Math.min(N - 1, Math.max(0, Math.floor(v * N))))
   })
@@ -189,8 +190,8 @@ export default function Story({ onExplore }) {
 
       {/* Pinned stage */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-        {/* Chapter number + label — centered on screen, flip-clock digits, antigravity float */}
-        <div className="absolute left-1/2 top-1/2 z-20 text-center animate-antigravity">
+        {/* Chapter number + label — centered, flip-clock digits, antigravity float, fades in after scrolling into the section */}
+        <motion.div style={{ opacity: counterOpacity }} className="absolute left-1/2 top-1/2 z-20 text-center animate-antigravity">
           <div className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
             {CH[active]?.kicker}
           </div>
@@ -199,7 +200,7 @@ export default function Story({ onExplore }) {
               <FlipDigit key={`${CH[active]?.no}-${i}`} d={d} index={i} />
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* fades for navbar readability */}
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight/90 to-transparent pointer-events-none transition-colors duration-300" />
