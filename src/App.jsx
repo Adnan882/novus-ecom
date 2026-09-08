@@ -13,6 +13,7 @@ import LoginPage from './pages/Login'
 import AccountPage from './pages/Account'
 import OrdersPage from './pages/Orders'
 import SuccessPage from './pages/Success'
+import BillPage from './pages/Bill'
 
 function Layout() {
   const navigate = useNavigate()
@@ -106,5 +107,18 @@ function Layout() {
 }
 
 export default function App() {
-  return <Layout />
+  return (
+    <Routes>
+      {/* Standalone route so the invoice prints without the site chrome */}
+      <Route
+        path="/bill"
+        element={
+          <RequireAuth>
+            <BillPage />
+          </RequireAuth>
+        }
+      />
+      <Route path="/*" element={<Layout />} />
+    </Routes>
+  )
 }

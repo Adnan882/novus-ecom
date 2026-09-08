@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { CheckCircle2, Package, Home, ShoppingBag } from 'lucide-react'
+import { CheckCircle2, Package, Home, ShoppingBag, FileText } from 'lucide-react'
 import { fmt } from '../utils/validation'
+import { etaRange } from '../lib/orders'
 
 export default function SuccessPage() {
   const location = useLocation()
@@ -30,11 +31,12 @@ export default function SuccessPage() {
             <div className="flex justify-between"><span className="text-mist">Amount</span><span className="font-semibold">{state.method === 'cod' ? 'Pay on delivery' : `₹${fmt(state.totals?.grand || 0)}`}</span></div>
             <div className="flex justify-between"><span className="text-mist">Deliver to</span><span className="font-semibold text-right max-w-[60%]">{state.address?.name}, {state.address?.city} {state.address?.pin}</span></div>
             <div className="flex justify-between"><span className="text-mist">Items</span><span className="font-semibold">{state.items?.length}</span></div>
-            <div className="flex justify-between"><span className="text-mist">ETA</span><span className="font-semibold text-mint">3–7 business days</span></div>
+            <div className="flex justify-between"><span className="text-mist">ETA</span><span className="font-semibold text-mint">{etaRange(state.order?.eta || state.eta, state.order?.createdAt)}</span></div>
           </div>
         )}
 
         <div className="flex flex-wrap justify-center gap-3 mt-8">
+          <Link to={`/bill?no=${encodeURIComponent(orderNo)}`} className="btn-ghost px-6 py-3 text-sm"><FileText className="w-4 h-4" /> Download Bill</Link>
           <Link to="/orders" className="btn-glow px-6 py-3 text-sm"><Package className="w-4 h-4" /> Track My Order</Link>
           <button onClick={() => navigate('/')} className="btn-ghost px-6 py-3 text-sm"><ShoppingBag className="w-4 h-4" /> Continue Shopping</button>
         </div>

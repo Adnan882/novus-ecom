@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Package, ShoppingBag, ChevronDown, Loader2 } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Package, ShoppingBag, ChevronDown, Loader2, FileText } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
-import { listOrders } from '../lib/orders'
+import { listOrders, etaRange } from '../lib/orders'
 import { getProduct } from '../store/cartStore'
 import { fmt } from '../utils/validation'
 import ProductImage from '../components/ProductImage'
@@ -22,6 +22,7 @@ const STATUS_STEPS = [
 
 export default function OrdersPage() {
   const { profile, user } = useAuth()
+  const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [openId, setOpenId] = useState(null)
@@ -131,9 +132,10 @@ export default function OrdersPage() {
                         </div>
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="flex gap-2 flex-wrap">
                         <Link to="/" className="btn-ghost px-4 py-2 text-xs">Buy again</Link>
-                        <span className="text-[11px] text-mist self-center flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-mint" /> Expected within 3–7 business days</span>
+                        <button onClick={() => navigate(`/bill?no=${encodeURIComponent(o.orderNo || o.id)}`)} className="btn-ghost px-4 py-2 text-xs"><FileText className="w-3.5 h-3.5" /> View bill</button>
+                        <span className="text-[11px] text-mist self-center flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-mint" /> Delivery expected by <b className="text-mint">{etaRange(o.eta, o.createdAt)}</b></span>
                       </div>
                     </div>
                   )}
