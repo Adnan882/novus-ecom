@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useMotionTemplate, useSpring } from 'framer-motion'
 import { Search, ShoppingBag, Menu, X, User, Sun, Moon, Package } from 'lucide-react'
 import { useCartStore } from '../store/cartStore'
 import { useThemeStore } from '../store/themeStore'
@@ -38,6 +38,14 @@ export default function Navbar({ onSearch, onSection }) {
   const { cartOpen, openCart, count } = useCartStore()
   const { theme, toggleTheme } = useThemeStore()
   const { isSignedIn, profile } = useAuth()
+
+  // Scroll-driven glass: blur + tint ramp in smoothly as content passes under the header
+  const { scrollY } = useScroll()
+  const rawFactor = useTransform(scrollY, [0, 180], [0, 1], { clamp: true })
+  const factor = useSpring(rawFactor, { stiffness: 140, damping: 24 })
+  const blurPx = useTransform(factor, (v) => `blur(${Math.round(18 * v)}px)`)
+  const tint = useTransform(factor, (v) => Math.min(1, v))
+  const glassBg = useMotionTemplate`rgb(var(--tv-midnight) / ${tint})`
 
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -97,9 +105,10 @@ export default function Navbar({ onSearch, onSection }) {
         transition={{ ...SPRING_GENTLE, delay: 0.1 }}
         className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'border-white/5 py-3' : 'bg-transparent border-transparent py-5'}`}
       >
-        <div
+        <motion.div
           aria-hidden
-          className={`absolute inset-0 transition-all duration-700 ease-in-out ${scrolled ? 'bg-midnight/70 backdrop-blur-xl' : 'bg-midnight/0 backdrop-blur-0'}`}
+          className="absolute inset-0"
+          style={{ backgroundColor: glassBg, backdropFilter: blurPx, WebkitBackdropFilter: blurPx }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
