@@ -11,6 +11,7 @@ const CH = [
     title: 'A 1:1 map of the original',
     body: 'Every pair starts as a precision 3D scan of the original. The geometry is digitised to 0.05 mm tolerances, so the clone is measured — not just copied — to the exact proportions of the real thing.',
     icon: Ruler,
+    product: 'ap-pro-2',
     align: 'left',
     accent: 'bg-glow/10 border-glow/30 text-glow',
     hex: 'rgb(var(--tv-glow))',
@@ -21,6 +22,7 @@ const CH = [
     title: 'OEM-grade build, true to spec',
     body: 'Aerospace aluminium, gloss PC+ABS shell, medical-grade silicone tips and nitro-coated mesh — pulled from the same OEM supply chains the originals are built from.',
     icon: Gem,
+    product: 'aw-s9',
     align: 'right',
     accent: 'bg-aqua/10 border-aqua/30 text-aqua',
     hex: '#97b4de',
@@ -31,6 +33,7 @@ const CH = [
     title: 'Zero-damage fabrication',
     body: 'Injection moulds stamped at 1,400 tonnes hold ±0.01 mm. Parts break out on air curtains instead of ejector pins — so every surface stays scratch-free, mirror-clean and stress-mark free. Ever.',
     icon: ShieldCheck,
+    product: 'ap-pro-max',
     align: 'left',
     accent: 'bg-mint/10 border-mint/30 text-mint',
     hex: '#1fa968',
@@ -41,6 +44,7 @@ const CH = [
     title: 'Internals you can’t see, but feel',
     body: 'The H1-class chip, tuned 13 mm drivers and a fast-charge cell are placed on precision SMT lines in a Class-100 dust-free zone, then sealed with calibrated press-fit and ultrasonic welding. No gaps. No creaks.',
     icon: Cpu,
+    product: 'aw-u1',
     align: 'right',
     accent: 'bg-ember/10 border-ember/30 text-ember',
     hex: '#e15151',
@@ -51,6 +55,7 @@ const CH = [
     title: 'Tested like the original',
     body: 'Every single unit runs ANC calibration, 30+ audio checks, an IPX4 splash test and a 200-point QA stamp. If it doesn’t pass, it doesn’t ship.',
     icon: FlaskConical,
+    product: 'pb-magsafe',
     align: 'left',
     accent: 'bg-gold/10 border-gold/30 text-gold',
     hex: '#d99a1a',
@@ -61,6 +66,7 @@ const CH = [
     title: 'Delivered like a flagship',
     body: 'Anti-static blister, tamper-proof seal and a GST billing slip from ₹1,299 — with free, fast India-wide delivery.',
     icon: PackageCheck,
+    product: 'ap-pro-2',
     align: 'right',
     accent: 'bg-glow/10 border-glow/30 text-glow',
     hex: 'rgb(var(--tv-glow))',
@@ -76,6 +82,11 @@ function Chapter({ c, i, onExplore, setRef }) {
   const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [60, 0, 0, -60])
   const Icon = c.icon
   const right = c.align === 'right'
+  const product = PRODUCTS.find((p) => p.id === c.product)
+  const sideX = right ? -1 : 1
+  const imgOpacity = useTransform(scrollYProgress, [0, 0.12, 0.85, 1], [0, 1, 1, 0])
+  const imgX = useTransform(scrollYProgress, [0, 0.28, 0.72, 1], [sideX * 70, 0, 0, sideX * 70])
+  const imgRotate = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [right ? 6 : -6, 0, 0, right ? -6 : 6])
 
   return (
     <div
@@ -85,6 +96,18 @@ function Chapter({ c, i, onExplore, setRef }) {
       }}
       className="relative h-screen w-full pointer-events-none"
     >
+      {/* Image on the opposite side of the text box */}
+      {product && (
+        <motion.div
+          style={{ opacity: imgOpacity, x: imgX, rotate: imgRotate }}
+          className={`absolute top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center ${right ? 'lg:left-[6%]' : 'lg:right-[6%]'}`}
+        >
+          <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
+            <ProductImage product={product} className="w-full h-full object-contain" />
+          </div>
+        </motion.div>
+      )}
+
       <motion.div
         style={{ opacity, y }}
         className={`absolute top-1/2 -translate-y-1/2 w-full max-w-md px-6 sm:px-8 ${right ? 'lg:left-auto lg:right-0' : ''} ${right ? 'lg:ml-auto' : ''}`}
