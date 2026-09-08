@@ -137,7 +137,7 @@ export default function QuickViewModal({ product, onClose, onBuyNow }) {
                   </motion.button>
                 </div>
 
-                <p className="text-[11px] text-mist mt-4">✓ Free shipping across India · 7-day returns · GST invoice included</p>
+                <p className="text-xs text-mist mt-4">✓ Free shipping across India · 7-day returns · GST invoice included</p>
               </div>
             </div>
           </motion.div>

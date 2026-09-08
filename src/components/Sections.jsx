@@ -117,7 +117,7 @@ export function Deals({ onQuickView }) {
                   className="rounded-2xl border border-line bg-deep px-4 py-3 text-center min-w-[74px]"
                 >
                   <span className="block text-2xl sm:text-3xl font-extrabold">{pad(v)}</span>
-                  <span className="text-[10px] text-mist uppercase tracking-widest">{l}</span>
+                  <span className="text-[11px] text-mist uppercase tracking-widest">{l}</span>
                 </motion.div>
               ))}
             </div>
@@ -441,7 +441,7 @@ export function TrustStrip() {
             <f.icon className="w-5 h-5 text-ink-2 shrink-0" />
             <div>
               <p className="text-sm font-bold">{f.t}</p>
-              <p className="text-[11px] text-mist">{f.d}</p>
+              <p className="text-xs text-mist">{f.d}</p>
             </div>
           </motion.div>
         ))}

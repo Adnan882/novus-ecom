@@ -66,7 +66,7 @@ export default function CartPage() {
                   <div className="flex-1 min-w-0 flex flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0">
-                        <p className="text-[10px] uppercase tracking-[0.15em] text-mist font-bold">{row.product.category}</p>
+                        <p className="text-[11px] uppercase tracking-[0.15em] text-mist font-bold">{row.product.category}</p>
                         <h3 className="font-bold text-[15px] leading-snug truncate">{row.product.name.replace('Clone ', '')}</h3>
                         {row.color && <p className="text-xs text-mist mt-0.5">{row.color}</p>}
                       </div>
@@ -120,20 +120,20 @@ export default function CartPage() {
             </div>
 
             <div className="mt-5">
-              <p className="text-[11px] uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
+              <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
               <div className="flex gap-2">
-                <input className="input-dark !py-2 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
-                <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
+                <input className="input-dark !py-2.5 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
+                <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 py-2.5 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
               </div>
-              {promoError && <p className="text-[11px] text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
-              {promoApplied && <p className="text-[11px] text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}
-              <p className="text-[11px] text-mist mt-1">Try: WELCOME15 · BIGDEAL25</p>
+              {promoError && <p className="text-xs text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
+              {promoApplied && <p className="text-xs text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}
+              <p className="text-xs text-mist mt-1">Try: WELCOME15 · BIGDEAL25</p>
             </div>
 
             <button onClick={() => navigate('/checkout')} className="btn-glow w-full mt-6 py-3.5 text-sm">
               Proceed to Checkout <ArrowRight className="w-4 h-4" />
             </button>
-            <p className="flex items-center justify-center gap-1.5 text-[11px] text-mist mt-3">
+            <p className="flex items-center justify-center gap-1.5 text-xs text-mist mt-3">
               <ShieldCheck className="w-3.5 h-3.5 text-mint" /> UPI · Cards · Net Banking · COD accepted
             </p>
           </div>

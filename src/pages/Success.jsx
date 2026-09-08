@@ -29,7 +29,7 @@ export default function SuccessPage() {
           <div className="max-w-sm mx-auto mt-6 rounded-3xl border border-line bg-deep p-5 text-left space-y-2 text-sm">
             <div className="flex justify-between"><span className="text-mist">Payment</span><span className="font-semibold capitalize">{state.method === 'upi' ? 'UPI' : state.method === 'card' ? 'Card' : state.method === 'netbanking' ? 'Net Banking' : state.method === 'wallet' ? 'Wallet' : 'COD'}</span></div>
             <div className="flex justify-between"><span className="text-mist">Amount</span><span className="font-semibold">{state.method === 'cod' ? 'Pay on delivery' : `₹${fmt(state.totals?.grand || 0)}`}</span></div>
-            <div className="flex justify-between"><span className="text-mist">Deliver to</span><span className="font-semibold text-right max-w-[60%]">{state.address?.name}, {state.address?.city} {state.address?.pin}</span></div>
+            <div className="flex justify-between"><span className="text-mist">Deliver to</span><span className="font-semibold text-right max-w-[60%] break-words">{state.address?.name}, {state.address?.city} {state.address?.pin}</span></div>
             <div className="flex justify-between"><span className="text-mist">Items</span><span className="font-semibold">{state.items?.length}</span></div>
             <div className="flex justify-between"><span className="text-mist">ETA</span><span className="font-semibold text-mint">{etaRange(state.order?.eta || state.eta, state.order?.createdAt)}</span></div>
           </div>

@@ -52,8 +52,8 @@ const ProductCard = memo(function ProductCard({ product, onQuickView, index = 0 
         </span>
       </div>
 
-      {/* Quick view */}
-      <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* Quick view — always visible on touch, hover-reveal on pointer */}
+      <div className="absolute top-4 right-4 z-20 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 transition-opacity duration-300">
         <button
           onClick={() => onQuickView(product)}
           className="w-9 h-9 rounded-xl border border-line bg-deep flex items-center justify-center text-ink-2 hover:border-ink-2 transition-colors"
@@ -75,7 +75,7 @@ const ProductCard = memo(function ProductCard({ product, onQuickView, index = 0 
 
       {/* Info */}
       <div className="p-5">
-        <p className="text-[10px] uppercase tracking-[0.15em] text-mist font-bold">
+        <p className="text-[11px] uppercase tracking-[0.15em] text-mist font-bold">
           {product.category}
         </p>
         <h3 className="mt-1 font-bold text-[15px] leading-snug">{product.name.replace('Clone ', '')}</h3>

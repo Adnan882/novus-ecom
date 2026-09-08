@@ -73,15 +73,15 @@ const WALLETS = [
 
 function LogoMini({ name }) {
   const palette = { PhonePe: 'bg-[#5f259f]', 'Google Pay': 'bg-[#4285f4]', Paytm: 'bg-[#00baf2]', BHIM: 'bg-[#fabc3e]' }
-  return <span className={`w-7 h-7 rounded-lg ${palette[name] || 'bg-glow'} text-white text-[9px] font-extrabold flex items-center justify-center`}>{name.slice(0, 2)}</span>
+  return <span className={`w-7 h-7 rounded-lg ${palette[name] || 'bg-glow'} text-white text-[10px] font-extrabold flex items-center justify-center`}>{name.slice(0, 2)}</span>
 }
 
 function Field({ label, error, children }) {
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">{label}</label>
+      <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">{label}</label>
       {children}
-      {error && <p className="text-[11px] text-ember mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{error}</p>}
+      {error && <p className="text-xs text-ember mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{error}</p>}
     </div>
   )
 }
@@ -367,7 +367,7 @@ export default function CheckoutPage() {
                           <span className="flex-1">
                             <span className="flex items-center gap-2 text-sm font-bold">
                               {a.label === 'Home' ? '🏠' : a.label === 'Work' ? '💼' : '📍'} {a.name}
-                              {a.isDefault && <span className="text-[10px] font-bold text-mint border border-mint/40 rounded-full px-2 py-0.5">DEFAULT</span>}
+                              {a.isDefault && <span className="text-[11px] font-bold text-mint border border-mint/40 rounded-full px-2 py-0.5">DEFAULT</span>}
                               <span className="ml-auto text-xs text-mist font-normal">{a.phone}</span>
                             </span>
                             <span className="block text-xs text-mist mt-1">{a.addr}, {a.locality}, {a.city}, {a.state} — {a.pin}</span>
@@ -414,7 +414,7 @@ export default function CheckoutPage() {
                         </Field>
                       </div>
                       <div className="sm:col-span-2">
-                        <p className="text-[11px] uppercase tracking-wider text-mist font-bold mb-2">Save as</p>
+                        <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Save as</p>
                         <div className="flex gap-2">
                           {['Home', 'Work', 'Other'].map((t) => (
                             <button key={t} type="button" onClick={() => setShip({ ...ship, type: t })}
@@ -433,7 +433,7 @@ export default function CheckoutPage() {
                     </div>
                   )}
 
-                  <p className="text-[11px] text-mist mt-4 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-mint" /> We'll send an OTP to verify your number before dispatch.</p>
+                  <p className="text-xs text-mist mt-4 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-mint" /> We'll send an OTP to verify your number before dispatch.</p>
                   <button onClick={() => goStep(2)} className="btn-glow w-full mt-6 py-3 text-sm">
                     Continue to Payment <ChevronRight className="w-4 h-4" />
                   </button>
@@ -454,7 +454,7 @@ export default function CheckoutPage() {
                         </span>
                         <span className="flex-1">
                           <span className="block text-sm font-bold">{m.label}</span>
-                          <span className="block text-[11px] text-mist">{m.desc}</span>
+                          <span className="block text-xs text-mist">{m.desc}</span>
                         </span>
                         <span className={`w-4 h-4 rounded-full border-2 ${method === m.id ? 'border-glow' : 'border-line'}`}>
                           {method === m.id && <span className="block w-2 h-2 rounded-full bg-glow m-auto mt-0.5" />}
@@ -511,7 +511,7 @@ export default function CheckoutPage() {
                         </div>
                       )}
 
-                      <p className="text-[11px] text-mist flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-mint" /> Complete payment within 15 minutes. Funds are taken only after you confirm.</p>
+                      <p className="text-xs text-mist flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-mint" /> Complete payment within 15 minutes. Funds are taken only after you confirm.</p>
                     </div>
                   )}
 
@@ -521,7 +521,7 @@ export default function CheckoutPage() {
                       <Field label="Card Number" error={errors.num}>
                         <div className="relative">
                           <input className="input-dark pr-24" placeholder="1234 5678 9012 3456" value={card.num} maxLength={19} onChange={(e) => setCard({ ...card, num: formatCardNumber(e.target.value) })} />
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-1.5 text-[9px] font-black">
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-1.5 text-[10px] font-black">
                             {['Visa', 'MC', 'RP', 'Amex'].map((b, i) => (
                               <span key={b} className={`flex items-center justify-center h-5 px-1.5 rounded ${detectCardBrand(card.num) === ['Visa', 'Mastercard', 'RuPay', 'Amex'][i] ? 'bg-glow text-glow-ink' : 'bg-line text-mist'}`}>{b}</span>
                             ))}
@@ -540,10 +540,10 @@ export default function CheckoutPage() {
                         </Field>
                       </div>
                       <div>
-                        <p className="text-[11px] uppercase tracking-wider text-mist font-bold mb-2">Cards from all major Indian banks accepted</p>
+                        <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Cards from all major Indian banks accepted</p>
                         <div className="flex flex-wrap gap-1.5">{ACCEPTED_BANKS.map((b) => <span key={b} className="chip">{b}</span>)}</div>
                       </div>
-                      <p className="text-[11px] text-mist flex items-center gap-1.5"><Lock className="w-3 h-3 text-mint" /> Tokenised & charged via secure 3D-Secure. We never store card details.</p>
+                      <p className="text-xs text-mist flex items-center gap-1.5"><Lock className="w-3 h-3 text-mint" /> Tokenised & charged via secure 3D-Secure. We never store card details.</p>
                     </div>
                   )}
 
@@ -554,7 +554,7 @@ export default function CheckoutPage() {
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">
                           {INDIAN_BANKS.map((b) => (
                             <button key={b} onClick={() => setBank(b)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left text-xs font-semibold transition-all ${bank === b ? 'border-glow bg-glow/10' : 'border-line bg-panel/60 hover:border-glow/40'}`}>
-                              <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-glow to-aqua text-white text-[8px] font-black flex items-center justify-center">{b.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>
+                              <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-glow to-aqua text-white text-[10px] font-black flex items-center justify-center">{b.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>
                               {b}
                             </button>
                           ))}
@@ -651,7 +651,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold truncate">{r.product.name.replace('Clone ', '')}</p>
-                      <p className="text-[11px] text-mist">{fmt(r.product.price)} × {r.qty}</p>
+                      <p className="text-xs text-mist">{fmt(r.product.price)} × {r.qty}</p>
                     </div>
                     <span className="text-xs font-bold">{fmt(r.product.price * r.qty)}</span>
                   </div>
@@ -671,14 +671,14 @@ export default function CheckoutPage() {
               </div>
 
               <div className="mt-5">
-                <p className="text-[11px] uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
+                <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
                 <div className="flex gap-2">
-                  <input className="input-dark !py-2 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
-                  <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
+                  <input className="input-dark !py-2.5 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
+                  <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 py-2.5 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
                 </div>
-                {promoError && <p className="text-[11px] text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
-                {promoApplied && <p className="text-[11px] text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}
-                <p className="text-[11px] text-mist mt-1">Try: WELCOME15 · BIGDEAL25</p>
+                {promoError && <p className="text-xs text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
+                {promoApplied && <p className="text-xs text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}
+                <p className="text-xs text-mist mt-1">Try: WELCOME15 · BIGDEAL25</p>
               </div>
 
               <div className="mt-5 space-y-2 text-xs text-mist rounded-2xl border border-line bg-panel/40 p-4">
@@ -748,7 +748,7 @@ function QrPayModal({ app, amount, setQrApp, onDone }) {
       <a href={deep} className="btn-glow w-full py-3 text-sm mb-2" onClick={() => { setAppOpened(true); setPaid(true) }}>
         <Smartphone className="w-4 h-4" /> Open in {app.name}
       </a>
-      <p className="text-[11px] text-mist mb-5">Tap above to jump straight into {app.name} — pay, and we'll confirm your order when you return.</p>
+      <p className="text-xs text-mist mb-5">Tap above to jump straight into {app.name} — pay, and we'll confirm your order when you return.</p>
       <button onClick={() => { setPaid(true); setTimeout(onDone, 350) }} disabled={paid} className="btn-ghost w-full py-3 text-sm disabled:opacity-60">
         <CheckCircle2 className="w-4 h-4" /> {paid ? 'Completing order…' : 'I already paid'}
       </button>

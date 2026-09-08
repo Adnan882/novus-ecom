@@ -117,7 +117,7 @@ function Chapter({ c, i, onExplore, progress }) {
   const imgRotate = useTransform(progress, [a, a + 0.08, b - 0.08, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
 
   return (
-    <div className="absolute inset-0 h-screen w-full pointer-events-none">
+    <div className="absolute inset-0 h-full-screen w-full pointer-events-none">
       {/* Image on the opposite side of the text box, sweeping with it */}
       {product && (
         <motion.div style={{ y: imgY, opacity: imgOpacity }} className="absolute inset-0 hidden lg:flex pointer-events-none">
@@ -135,7 +135,7 @@ function Chapter({ c, i, onExplore, progress }) {
       {/* Text box — travels bottom to top across its slot */}
       <motion.div
         style={{ y: textY }}
-        className={`absolute left-0 right-0 top-0 h-screen flex pointer-events-none ${right ? 'justify-end' : 'justify-start'}`}
+        className={`absolute left-0 right-0 top-0 h-full-screen flex pointer-events-none ${right ? 'justify-end' : 'justify-start'}`}
       >
         <motion.div
           style={{ opacity }}
@@ -191,17 +191,17 @@ export default function Story({ onExplore }) {
   }
 
   return (
-    <section id="story" ref={wrapRef} style={{ height: `${N * 100}vh` }} className="relative bg-midnight overflow-x-clip transition-colors duration-300">
+    <section id="story" ref={wrapRef} style={{ height: `calc(${N} * var(--svh, 100vh))` }} className="relative bg-midnight overflow-x-clip transition-colors duration-300">
       {/* progress hairline */}
       <div className="absolute top-0 left-0 right-0 h-[3px] z-40">
         <motion.div style={{ scaleX: scrollYProgress }} className="h-full origin-left bg-glow" />
       </div>
 
       {/* Pinned stage */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-full-screen overflow-hidden flex items-center justify-center">
         {/* Chapter number + label — centered, flip-clock digits, antigravity float, fades in after scrolling into the section */}
         <motion.div style={{ opacity: counterOpacity }} className="absolute left-1/2 top-1/2 z-20 text-center animate-antigravity">
-          <div className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
+          <div className="font-mono text-[11px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
             {CH[active]?.kicker}
           </div>
           <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3 px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-2xl bg-black dark:bg-white border border-black/25 dark:border-white/25 shadow-[0_12px_32px_rgba(0,0,0,0.3)] dark:shadow-[0_12px_32px_rgba(255,255,255,0.07)]">

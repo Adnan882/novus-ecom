@@ -171,6 +171,25 @@
 
 /* ---------- Responsive & device refinements ---------- */
 
+/* Stable small-viewport unit (iOS dynamic toolbar) with vh fallback */
+html {
+  --svh: 100svh;
+}
+@supports not (height: 100svh) {
+  html {
+    --svh: 100vh;
+  }
+}
+.h-full-screen {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Fluid, never-break typography */
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
+img, video, svg { max-width: 100%; }
+
 /* Respect notched-phone safe areas on fixed chrome */
 @supports (padding: env(safe-area-inset-top)) {
   .safe-top { padding-top: env(safe-area-inset-top); }

@@ -97,7 +97,7 @@ export default function Navbar({ onSearch, onSection }) {
         transition={{ ...SPRING_GENTLE, delay: 0.1 }}
         className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'lens border-line py-3' : 'bg-transparent border-transparent py-5'}`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
           <motion.button
             whileHover={{ scale: 1.03 }}
@@ -138,7 +138,7 @@ export default function Navbar({ onSearch, onSection }) {
             {[
               { fn: toggleTheme, label: 'Toggle theme', icon: theme === 'dark' ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" /> },
               { fn: () => setSearchOpen((s) => !s), label: 'Search', icon: <Search className="w-[18px] h-[18px]" /> },
-              { fn: goOrders, label: 'My Orders', icon: <Package className="w-[18px] h-[18px]" /> },
+              { fn: goOrders, label: 'My Orders', icon: <Package className="w-[18px] h-[18px]" />, hideTiny: true },
               { fn: goCart, label: 'Cart', icon: <ShoppingBag className="w-[18px] h-[18px]" />, badge: true },
             ].map((a, i) => (
               <motion.button
@@ -149,7 +149,7 @@ export default function Navbar({ onSearch, onSection }) {
                 whileHover={{ scale: 1.1, y: -1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={a.fn}
-                className="relative w-11 h-11 rounded-xl border border-line bg-panel text-ink-2 hover:bg-ink/5 hover:border-ink-2 transition-colors flex items-center justify-center"
+                className={`${a.hideTiny ? 'hidden min-[420px]:flex' : 'flex'} relative w-11 h-11 rounded-xl border border-line bg-panel text-ink-2 hover:bg-ink/5 hover:border-ink-2 transition-colors items-center justify-center`}
                 aria-label={a.label}
               >
                 {a.icon}
@@ -315,7 +315,7 @@ export default function Navbar({ onSearch, onSection }) {
                     >
                       {p.label}
                       {p.to === '/account' && isSignedIn && <span className="text-xs text-glow font-black uppercase">{initials || accountName}</span>}
-                      {p.to === '/account' && !isSignedIn && <span className="text-[10px] text-mist font-medium">Sign in</span>}
+                      {p.to === '/account' && !isSignedIn && <span className="text-[11px] text-mist font-medium">Sign in</span>}
                     </Link>
                   ))}
                 </div>

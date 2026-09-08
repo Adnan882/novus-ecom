@@ -166,7 +166,7 @@ export default function Hero({ onExplore }) {
               </div>
             </div>
 
-            <div className="h-[340px] sm:h-[420px] lg:h-[480px]">
+            <div className="h-[clamp(240px,44vw,500px)]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`${active.id}-${color}`}
@@ -197,7 +197,7 @@ export default function Hero({ onExplore }) {
               transition={{ duration: 0.25 }}
               className="absolute -top-3 right-0 sm:right-6 rounded-2xl border border-line bg-deep px-4 py-2.5 max-w-[calc(100%-1.5rem)]"
             >
-              <p className="text-[10px] text-mist uppercase tracking-wider">{active.name.replace('Clone ', '')}</p>
+              <p className="text-[11px] text-mist uppercase tracking-wider">{active.name.replace('Clone ', '')}</p>
               <p className="text-lg font-extrabold flex items-baseline gap-2">
                 <span>₹{active.price.toLocaleString('en-IN')}</span>
                 <span className="text-xs text-mist line-through font-medium">₹{active.mrp.toLocaleString('en-IN')}</span>

@@ -75,7 +75,7 @@ export default function CartDrawer({ onCheckout, onBrowse }) {
                               <Trash2 className="w-4 h-4" />
                             </button>
                           </div>
-                          {row.color && <p className="text-[11px] text-mist">{row.color}</p>}
+                          {row.color && <p className="text-xs text-mist">{row.color}</p>}
                           <div className="mt-2 flex items-center justify-between">
                             <div className="flex items-center rounded-lg border border-line bg-deep">
                               <button onClick={() => updateQty(`${row.productId}-${row.color || 'd'}`, -1)} className="w-10 h-10 min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center text-glow hover:text-ink-2 hover:bg-glow/10 transition-colors"><Minus className="w-4 h-4" /></button>
@@ -107,7 +107,7 @@ export default function CartDrawer({ onCheckout, onBrowse }) {
                 >
                   Proceed to Checkout <ArrowRight className="w-4 h-4" />
                 </motion.button>
-                <p className="flex items-center justify-center gap-1.5 text-[11px] text-mist mt-3">
+                <p className="flex items-center justify-center gap-1.5 text-xs text-mist mt-3">
                   <ShieldCheck className="w-3.5 h-3.5 text-mint" /> UPI · Cards · Net Banking · COD accepted
                 </p>
               </div>

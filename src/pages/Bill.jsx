@@ -137,8 +137,8 @@ export default function BillPage() {
             </div>
           </div>
 
-          <div className="px-6 sm:px-10 pb-2">
-            <table className="w-full text-xs border-collapse">
+          <div className="px-6 sm:px-10 pb-2 overflow-x-auto">
+            <table className="w-full min-w-[520px] text-xs border-collapse">
               <thead>
                 <tr className="border-b-2 border-gray-900">
                   <th className="text-left py-2 pr-2 w-8">#</th>

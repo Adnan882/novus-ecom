@@ -27,9 +27,9 @@ const LABELS = [
 function Field({ label, error, children }) {
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">{label}</label>
+      <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">{label}</label>
       {children}
-      {error && <p className="text-[11px] text-ember mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{error}</p>}
+      {error && <p className="text-xs text-ember mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{error}</p>}
     </div>
   )
 }
@@ -73,7 +73,7 @@ export default function AddressForm({ initial, onSubmit, onCancel, submitLabel =
       <p className="flex items-center gap-2 font-bold text-sm mb-4"><MapPin className="w-4 h-4 text-glow" /> Address details</p>
       <div className="grid sm:grid-cols-2 gap-4">
         <div>
-          <p className="text-[11px] uppercase tracking-wider text-mist font-bold mb-2">Save as</p>
+          <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Save as</p>
           <div className="flex gap-2">
             {LABELS.map((t) => (
               <button key={t.id} type="button" onClick={() => setA({ ...a, label: t.id })}

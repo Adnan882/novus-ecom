@@ -95,7 +95,7 @@ export default function BentoSection() {
               <span className="inline-flex items-center gap-1.5 rounded-full bg-mint/15 text-mint text-[11px] font-bold px-3 py-1">
                 <BadgeCheck className="w-3.5 h-3.5" /> Flagship · Bestseller
               </span>
-              <span className="text-[11px] text-mist">{apPro?.rating} ★ · {apPro?.reviews?.toLocaleString('en-IN')} reviews</span>
+              <span className="text-xs text-mist">{apPro?.rating} ★ · {apPro?.reviews?.toLocaleString('en-IN')} reviews</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-black tracking-tight">{apPro?.name}</h3>
             <p className="text-mist text-sm mt-1">Space-grade ANC. 30-hour battery. 1:1 clone precision.</p>
@@ -106,7 +106,7 @@ export default function BentoSection() {
 
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-mist text-[11px]">Today only</p>
+                <p className="text-mist text-xs">Today only</p>
                 <p className="text-2xl font-extrabold flex items-baseline gap-2">
                   ₹{apPro?.price?.toLocaleString('en-IN')}
                   <span className="text-sm text-mist line-through">₹{apPro?.mrp?.toLocaleString('en-IN')}</span>

@@ -102,7 +102,7 @@ export default function LoginPage() {
               { id: 'signup', label: 'Create Account' },
             ].map((m) => (
               <button key={m.id} onClick={() => { setMode(m.id); setError(''); setOtpSent(false); setOtpSession(null); setOtpCode('') }}
-                className={`flex-1 py-3.5 text-sm font-bold transition-colors ${mode === m.id ? 'text-glow border-b-2 border-glow' : 'text-mist hover:text-ink-2'}`}>
+                className={`flex-1 px-1 py-3.5 text-center text-[13px] sm:text-sm leading-tight font-bold transition-colors ${mode === m.id ? 'text-glow border-b-2 border-glow' : 'text-mist hover:text-ink-2'}`}>
                 {m.label}
               </button>
             ))}
@@ -128,7 +128,7 @@ export default function LoginPage() {
 
             <div className="flex items-center gap-3 my-5">
               <span className="flex-1 h-px bg-line" />
-              <span className="text-[11px] uppercase tracking-widest text-mist">
+              <span className="text-xs uppercase tracking-widest text-mist">
                 {mode === 'otp' ? 'phone verification' : 'or use email'}
               </span>
               <span className="flex-1 h-px bg-line" />
@@ -140,25 +140,25 @@ export default function LoginPage() {
                 {!otpSent && (
                   <>
                     <div>
-                      <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Mobile Number (+91)</label>
+                      <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Mobile Number (+91)</label>
                       <div className="relative">
                         <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                         <input className="input-dark !pl-11" placeholder="98765 43210" value={otpPhone}
                           onChange={(e) => setOtpPhone(e.target.value.replace(/\D/g, '').slice(0, 12))} required />
                       </div>
                     </div>
-                    <p className="text-[11px] text-mist">We'll send a one-time code to verify your number. Standard SMS charges apply.</p>
+                    <p className="text-xs text-mist">We'll send a one-time code to verify your number. Standard SMS charges apply.</p>
                   </>
                 )}
                 {otpSent && (
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Enter OTP</label>
+                    <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Enter OTP</label>
                     <div className="relative">
                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                       <input className="input-dark !pl-11" placeholder="6-digit code" value={otpCode}
                         onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))} autoFocus required />
                     </div>
-                    <p className="text-[11px] text-mist mt-1">Sent to {formatPhone(otpPhone)}. Didn't receive it?
+                    <p className="text-xs text-mist mt-1">Sent to {formatPhone(otpPhone)}. Didn't receive it?
                       <button type="button" onClick={onSendOtp} className="text-glow font-semibold ml-1">Resend</button>
                     </p>
                   </div>
@@ -177,7 +177,7 @@ export default function LoginPage() {
               <form onSubmit={onEmail} className="space-y-3.5">
                 {mode === 'signup' && (
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Full Name</label>
+                    <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Full Name</label>
                     <div className="relative">
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                       <input className="input-dark !pl-11" placeholder="Adnan Chowdhury" value={name} onChange={(e) => setName(e.target.value)} />
@@ -185,14 +185,14 @@ export default function LoginPage() {
                   </div>
                 )}
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Email</label>
+                  <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Email</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                     <input className="input-dark !pl-11" type="email" placeholder="you@gmail.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Password</label>
+                  <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                     <input className="input-dark !pl-11" type="password" placeholder={mode === 'signup' ? 'Min. 6 characters' : '••••••••'} value={pw} onChange={(e) => setPw(e.target.value)} required />
@@ -200,7 +200,7 @@ export default function LoginPage() {
                 </div>
                 {mode === 'signup' && (
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Confirm Password</label>
+                    <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Confirm Password</label>
                     <div className="relative">
                       <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-mist" />
                       <input className="input-dark !pl-11" type="password" placeholder="Repeat password" value={pw2} onChange={(e) => setPw2(e.target.value)} required />
@@ -219,7 +219,7 @@ export default function LoginPage() {
             {/* reCAPTCHA container (invisible, created on demand) */}
             {mode === 'otp' && <div id="phone-recaptcha" className="invisible" />}
 
-            <div className="flex flex-wrap gap-x-2 gap-y-1 justify-center text-[11px] text-mist mt-5">
+            <div className="flex flex-wrap gap-x-2 gap-y-1 justify-center text-xs text-mist mt-5">
               <Link to="/" className="hover:text-ink-2 transition-colors">Back to store</Link>
               <span>·</span>
               <button onClick={() => navigate('/')} className="hover:text-ink-2 transition-colors">Browse products</button>

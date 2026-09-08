@@ -94,7 +94,7 @@ export default function AccountPage() {
               )}
               <p className="font-extrabold text-lg leading-tight">{profile?.name || 'Guest'}</p>
               <p className="text-xs text-mist mt-1 flex items-center justify-center gap-1.5"><Mail className="w-3 h-3" /> {profile?.email || '—'}</p>
-              {configured && <p className="text-[10px] text-mint font-bold mt-2 uppercase tracking-widest">Synced to account</p>}
+              {configured && <p className="text-xs text-mint font-bold mt-2 uppercase tracking-widest">Synced to account</p>}
 
               <div className="flex flex-col gap-2 mt-6 text-left">
                 <Link to="/orders" className="flex items-center gap-3 rounded-xl border border-line px-4 py-3 text-sm font-semibold hover:border-glow/50 transition-all hover:bg-glow/5">
@@ -135,21 +135,21 @@ export default function AccountPage() {
                   <div className="flex items-center gap-3 rounded-2xl border border-line bg-panel/50 px-4 py-3.5">
                     <User className="w-4 h-4 text-glow shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-widest text-mist font-bold">Full name</p>
+                      <p className="text-[11px] uppercase tracking-widest text-mist font-bold">Full name</p>
                       <p className="font-bold truncate">{profile?.name || '—'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 rounded-2xl border border-line bg-panel/50 px-4 py-3.5">
                     <Mail className="w-4 h-4 text-glow shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-widest text-mist font-bold">Email</p>
+                      <p className="text-[11px] uppercase tracking-widest text-mist font-bold">Email</p>
                       <p className="font-bold truncate">{profile?.email || '—'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 rounded-2xl border border-line bg-panel/50 px-4 py-3.5 sm:col-span-2">
                     <Phone className="w-4 h-4 text-glow shrink-0" />
                     <div className="min-w-0">
-                      <p className="text-[10px] uppercase tracking-widest text-mist font-bold">Mobile (+91)</p>
+                      <p className="text-[11px] uppercase tracking-widest text-mist font-bold">Mobile (+91)</p>
                       <p className="font-bold">{profile?.phone ? `+91 ${profile.phone}` : 'Add a number for faster checkout'}</p>
                     </div>
                   </div>
@@ -157,11 +157,11 @@ export default function AccountPage() {
               ) : (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Full name</label>
+                    <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Full name</label>
                     <input className="input-dark" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-mist font-bold mb-1.5">Mobile (+91)</label>
+                    <label className="block text-xs uppercase tracking-wider text-mist font-bold mb-1.5">Mobile (+91)</label>
                     <input className="input-dark" placeholder="98765 43210" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })} />
                   </div>
                   <div className="flex gap-2">
@@ -219,7 +219,7 @@ export default function AccountPage() {
                         <div className="min-w-0">
                           <p className="flex flex-wrap items-center gap-2 text-sm font-bold">
                             <span>{labelIcon(a.label)}</span> {a.name}
-                            {a.isDefault && <span className="text-[10px] font-bold text-mint border border-mint/40 rounded-full px-2 py-0.5">DEFAULT</span>}
+                            {a.isDefault && <span className="text-[11px] font-bold text-mint border border-mint/40 rounded-full px-2 py-0.5">DEFAULT</span>}
                           </p>
                           <p className="text-xs text-mist mt-1 break-words">{a.addr}, {a.locality}, {a.city}, {a.state} — {a.pin}</p>
                           <p className="text-xs text-mist mt-0.5">+91 {a.phone} · {a.label === 'Home' ? 'Home' : a.label === 'Work' ? 'Work' : 'Other'}</p>
@@ -246,7 +246,7 @@ export default function AccountPage() {
           </div>
         </div>
 
-        <p className="text-[11px] text-mist mt-8 text-center flex items-center justify-center gap-1.5">
+        <p className="text-xs text-mist mt-8 text-center flex items-center justify-center gap-1.5">
           <span className="w-3.5 h-3.5 inline-flex items-center justify-center"><Check className="w-3 h-3" /></span>
           {configured ? 'Your data is stored securely with Firebase and synced across all your devices.' : 'Demo mode — connect Firebase to enable cloud sync.'}
         </p>
