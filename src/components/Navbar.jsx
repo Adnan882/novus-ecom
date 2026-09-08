@@ -95,7 +95,7 @@ export default function Navbar({ onSearch, onSection }) {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...SPRING_GENTLE, delay: 0.1 }}
-        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'lens border-line py-3' : 'bg-transparent border-transparent py-5'}`}
+        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'border-transparent bg-midnight/70 backdrop-blur-xl py-3' : 'bg-transparent border-transparent py-5'}`}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
