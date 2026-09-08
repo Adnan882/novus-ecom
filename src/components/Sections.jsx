@@ -332,7 +332,7 @@ export function Footer({ onNavigate, onGo }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div>
-            <h3 className="text-xl font-extrabold">No<span className="gradient-text">vus</span></h3>
+            <h3 className="text-xl font-extrabold flex items-center gap-2"><img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Novus" className="w-8 h-8 rounded-lg object-contain" />No<span className="gradient-text">vus</span></h3>
             <p className="text-mist text-sm mt-3 leading-relaxed">Premium clone tech — AirPods, watches, speakers & more. Inspected, tested and quality-checked before every dispatch.</p>
             <div className="flex gap-2 mt-4">
               {[

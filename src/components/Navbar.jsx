@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, ShoppingBag, Menu, X, User, Zap, Sun, Moon, Package } from 'lucide-react'
+import { Search, ShoppingBag, Menu, X, User, Sun, Moon, Package } from 'lucide-react'
 import { useCartStore } from '../store/cartStore'
 import { useThemeStore } from '../store/themeStore'
 import { useAuth } from '../context/AuthContext'
@@ -107,11 +107,9 @@ export default function Navbar({ onSearch, onSection }) {
             className="flex items-center gap-2 shrink-0 group"
           >
             <motion.span
-              whileHover={{ rotate: 12 }}
-              transition={SPRING_BOUNCY}
-              className="w-9 h-9 rounded-xl bg-gradient-to-br from-glow to-aqua flex items-center justify-center"
+              className="w-9 h-9 rounded-xl overflow-hidden border border-line shrink-0"
             >
-              <Zap className="w-5 h-5 text-white" />
+              <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Novus" className="w-full h-full object-contain" />
             </motion.span>
             <span className="text-xl font-extrabold tracking-tight">
               No<span className="gradient-text">vus</span>

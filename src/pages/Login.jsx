@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Mail, Lock, User, Zap, AlertCircle, Loader2, Smartphone } from 'lucide-react'
+import { Mail, Lock, User, AlertCircle, Loader2, Smartphone } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function LoginPage() {
@@ -82,8 +82,8 @@ export default function LoginPage() {
           {/* Header */}
           <div className="px-7 pt-8 pb-6 border-b border-line bg-midnight/40">
             <div className="flex items-center gap-2 mb-2">
-              <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-glow to-aqua flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
+              <span className="w-9 h-9 rounded-xl overflow-hidden border border-line flex items-center justify-center">
+                <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Novus" className="w-full h-full object-contain" />
               </span>
               <h1 className="text-xl font-extrabold">Welcome to Novus</h1>
             </div>

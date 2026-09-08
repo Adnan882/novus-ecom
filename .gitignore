@@ -9,6 +9,7 @@ dist/
 blenderkit/
 .qodo/
 Screenshot *.png
+Picsart_*.png
 nothing-font copy.otf.otf
 npm-debug.log*
 .vercel
