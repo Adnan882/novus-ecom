@@ -95,9 +95,13 @@ export default function Navbar({ onSearch, onSection }) {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...SPRING_GENTLE, delay: 0.1 }}
-        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'border-transparent bg-midnight/70 backdrop-blur-xl py-3' : 'bg-transparent border-transparent py-5'}`}
+        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'border-white/5 py-3' : 'bg-transparent border-transparent py-5'}`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
+        <div
+          aria-hidden
+          className={`absolute inset-0 transition-all duration-700 ease-in-out ${scrolled ? 'bg-midnight/70 backdrop-blur-xl' : 'bg-midnight/0 backdrop-blur-0'}`}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
           <motion.button
             whileHover={{ scale: 1.03 }}
