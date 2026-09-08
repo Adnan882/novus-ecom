@@ -44,7 +44,7 @@ export default function Navbar({ onSearch, onSection }) {
   const rawFactor = useTransform(scrollY, [0, 180], [0, 1], { clamp: true })
   const factor = useSpring(rawFactor, { stiffness: 140, damping: 24 })
   const blurPx = useTransform(factor, (v) => `blur(${Math.round(30 * v)}px) saturate(180%)`)
-  const tint = useTransform(factor, (v) => Math.round(v * 0.62 * 100) / 100)
+  const tint = useTransform(factor, (v) => Math.round(v * 0.56 * 100) / 100)
   const glassBg = useMotionTemplate`rgb(var(--tv-midnight) / ${tint})`
 
   const [scrolled, setScrolled] = useState(false)
