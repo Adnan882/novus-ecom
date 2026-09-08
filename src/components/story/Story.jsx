@@ -102,7 +102,7 @@ function Chapter({ c, i, onExplore, setRef }) {
           style={{ opacity: imgOpacity, x: imgX, rotate: imgRotate }}
           className={`absolute top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center ${right ? 'lg:left-[6%]' : 'lg:right-[6%]'}`}
         >
-          <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
+          <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-[24rem] lg:h-[24rem] xl:w-[28rem] xl:h-[28rem] rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
             <ProductImage product={product} className="w-full h-full object-contain" />
           </div>
         </motion.div>
@@ -166,22 +166,21 @@ export default function Story({ onExplore }) {
 
       {/* Pinned stage */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-        <div className="relative w-full max-w-5xl mx-auto px-6">
-          {/* Left — chapter number + label */}
-          <div className="relative lg:pl-4">
-            <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="relative">
-              <span className="font-mono text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
-                {CH[active]?.kicker}
-              </span>
-              <span className="block font-mono font-black leading-none mt-4 text-[56px] sm:text-[104px] md:text-[140px] text-ink">
-                {CH[active]?.no}
-              </span>
-              <p className="text-sm sm:text-base text-mist mt-2 max-w-sm hidden sm:block">
-                {CH[active]?.title}
-              </p>
-            </motion.div>
-          </div>
+        {/* Chapter number + label — anchored bottom-left so it never overlaps the scrolling text boxes or images */}
+        <div className="absolute left-6 sm:left-12 bottom-10 z-20">
+          <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="relative">
+            <span className="font-mono text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
+              {CH[active]?.kicker}
+            </span>
+            <span className="block font-mono font-black leading-none mt-4 text-6xl sm:text-8xl md:text-[104px] text-ink">
+              {CH[active]?.no}
+            </span>
+            <span className="hidden sm:block text-sm text-mist mt-1 max-w-xs">
+              {CH[active]?.title}
+            </span>
+          </motion.div>
         </div>
+      </div>
 
         {/* fades for navbar readability */}
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight/90 to-transparent pointer-events-none transition-colors duration-300" />
