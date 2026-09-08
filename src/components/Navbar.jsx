@@ -107,17 +107,14 @@ export default function Navbar({ onSearch, onSection }) {
       >
         <motion.div
           aria-hidden
-          className="absolute inset-0"
-          style={{ backgroundColor: glassBg, backdropFilter: blurPx, WebkitBackdropFilter: blurPx, boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
-        />
-        <motion.div
-          aria-hidden
-          className="absolute -bottom-4 left-0 right-0 h-6 pointer-events-none"
+          className="absolute left-0 right-0 top-0 -bottom-10"
           style={{
             opacity: factor,
-            background: 'linear-gradient(to bottom, rgb(var(--tv-line) / 0.3), rgb(var(--tv-line) / 0.05) 45%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)',
-            maskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)',
+            backgroundColor: glassBg,
+            backdropFilter: blurPx,
+            WebkitBackdropFilter: blurPx,
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 58%, transparent 96%)',
+            maskImage: 'linear-gradient(to bottom, black 0%, black 58%, transparent 96%)',
           }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
