@@ -109,11 +109,11 @@ function Chapter({ c, i, onExplore, setRef, progress }) {
   // shows number i, so the text sequences stay in sync with the counter.
   const a = i / N
   const b = (i + 1) / N
-  const opacity = useTransform(progress, [a + 0.02, a + 0.06, b - 0.06, b - 0.02], [0, 1, 1, 0])
-  const y = useTransform(progress, [a + 0.02, a + 0.08, b - 0.08, b - 0.02], [48, 0, 0, -48])
-  const imgOpacity = useTransform(progress, [a + 0.03, a + 0.08, b - 0.08, b - 0.03], [0, 1, 1, 0])
-  const imgX = useTransform(progress, [a, a + 0.08, b - 0.08, b], [sideX * 70, 0, 0, sideX * 70])
-  const imgRotate = useTransform(progress, [a, a + 0.08, b - 0.08, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
+  const opacity = useTransform(progress, [a + 0.005, a + 0.04, b - 0.02, b - 0.005], [0, 1, 1, 0])
+  const y = useTransform(progress, [a + 0.005, a + 0.05, b - 0.02, b - 0.005], [44, 0, 0, -44])
+  const imgOpacity = useTransform(progress, [a + 0.01, a + 0.05, b - 0.02, b - 0.005], [0, 1, 1, 0])
+  const imgX = useTransform(progress, [a, a + 0.05, b - 0.04, b], [sideX * 70, 0, 0, sideX * 70])
+  const imgRotate = useTransform(progress, [a, a + 0.05, b - 0.04, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
 
   return (
     <div
