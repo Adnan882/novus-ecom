@@ -345,10 +345,10 @@ export default function CheckoutPage() {
                     <h2 className="font-extrabold text-lg flex items-center gap-2"><MapPin className="w-5 h-5 text-glow" /> Delivery Address</h2>
                     {showSaved && (
                       <div className="flex rounded-xl border border-line overflow-hidden">
-                        <button onClick={() => { setAddrMode('saved'); setErrors({}) }} className={`px-4 py-2 text-xs font-bold ${addrMode === 'saved' ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist'}`}>
+                        <button onClick={() => { setAddrMode('saved'); setErrors({}) }} className={`px-4 py-2 min-h-[44px] text-xs font-bold ${addrMode === 'saved' ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist'}`}>
                           Saved ({savedAddrs.length})
                         </button>
-                        <button onClick={startNewAddress} className={`px-4 py-2 text-xs font-bold ${addrMode === 'new' ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist'}`}>
+                        <button onClick={startNewAddress} className={`px-4 py-2 min-h-[44px] text-xs font-bold ${addrMode === 'new' ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist'}`}>
                           + New
                         </button>
                       </div>
@@ -418,7 +418,7 @@ export default function CheckoutPage() {
                         <div className="flex gap-2">
                           {['Home', 'Work', 'Other'].map((t) => (
                             <button key={t} type="button" onClick={() => setShip({ ...ship, type: t })}
-                              className={`flex items-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-semibold transition-all ${ship.type === t ? 'border-glow bg-glow/10 text-glow' : 'border-line bg-panel/60 text-mist hover:border-glow/40'}`}>
+                              className={`flex items-center gap-1.5 rounded-xl border px-4 py-2.5 min-h-[44px] text-sm font-semibold transition-all ${ship.type === t ? 'border-glow bg-glow/10 text-glow' : 'border-line bg-panel/60 text-mist hover:border-glow/40'}`}>
                               <span>{t === 'Home' ? '🏠' : t === 'Work' ? '💼' : '📍'}</span> {t}
                             </button>
                           ))}
@@ -469,7 +469,7 @@ export default function CheckoutPage() {
                       <div className="flex rounded-2xl border border-line overflow-hidden">
                         {[{ id: 'scan', label: 'Scan via QR' }, { id: 'upi', label: 'Enter UPI ID' }, { id: 'apps', label: 'UPI Apps' }].map((t) => (
                           <button key={t.id} type="button" onClick={() => { setUpiMode(t.id); setErrors({}) }}
-                            className={`flex-1 py-2.5 text-xs font-bold transition-all ${upiMode === t.id ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist hover:text-ink'}`}>
+                            className={`flex-1 py-2.5 min-h-[44px] text-xs font-bold transition-all ${upiMode === t.id ? 'bg-glow text-glow-ink' : 'bg-panel/60 text-mist hover:text-ink'}`}>
                             {t.label}
                           </button>
                         ))}
@@ -482,7 +482,7 @@ export default function CheckoutPage() {
                           </div>
                           <p className="text-sm font-bold flex items-center gap-1.5"><QrCode className="w-4 h-4 text-glow" /> Scan with any UPI app</p>
                           <p className="text-xs text-mist mt-1">Pay {fmt(totals.grand)} to <span className="font-semibold text-ink">{UPI_VPA}</span></p>
-                          <button type="button" onClick={() => setQrApp(UPI_APPS[0])} className="flex items-center gap-2 mt-3 rounded-xl border border-line bg-deep px-4 py-2 text-xs font-bold hover:border-glow/50 transition-all">
+                          <button type="button" onClick={() => setQrApp(UPI_APPS[0])} className="flex items-center gap-2 mt-3 rounded-xl border border-line bg-deep px-4 py-2 min-h-[44px] text-xs font-bold hover:border-glow/50 transition-all">
                             <Smartphone className="w-4 h-4 text-glow" /> Open in {scanApp.name} <ChevronRight className="w-3.5 h-3.5 text-mist" />
                           </button>
                         </div>
@@ -553,7 +553,7 @@ export default function CheckoutPage() {
                       <Field label="Select your bank" error={errors.bank}>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-1">
                           {INDIAN_BANKS.map((b) => (
-                            <button key={b} onClick={() => setBank(b)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left text-xs font-semibold transition-all ${bank === b ? 'border-glow bg-glow/10' : 'border-line bg-panel/60 hover:border-glow/40'}`}>
+                            <button key={b} onClick={() => setBank(b)} className={`flex items-center gap-2 rounded-xl border px-3 py-2.5 min-h-[44px] text-left text-xs font-semibold transition-all ${bank === b ? 'border-glow bg-glow/10' : 'border-line bg-panel/60 hover:border-glow/40'}`}>
                               <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-glow to-aqua text-white text-[10px] font-black flex items-center justify-center">{b.split(' ').map((w) => w[0]).join('').slice(0, 2)}</span>
                               {b}
                             </button>
@@ -673,8 +673,8 @@ export default function CheckoutPage() {
               <div className="mt-5">
                 <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
                 <div className="flex gap-2">
-                  <input className="input-dark !py-2.5 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
-                  <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 py-2.5 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
+                  <input className="input-dark !min-h-[44px]" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
+                  <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 min-h-[44px] text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
                 </div>
                 {promoError && <p className="text-xs text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
                 {promoApplied && <p className="text-xs text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}
@@ -740,8 +740,8 @@ function QrPayModal({ app, amount, setQrApp, onDone }) {
       <div className="rounded-xl bg-panel border border-line px-3 py-2 flex items-center justify-between text-sm mb-3">
         <span className="text-mist text-xs">Pay {fmt(amount)} to</span>
         <span className="font-bold text-xs flex items-center gap-1.5">{vpa}
-          <button onClick={() => { navigator.clipboard?.writeText(vpa); setCopied(true) }} className="text-glow">
-            {copied ? <Check className="w-3.5 h-3.5 text-mint" /> : <Copy className="w-3.5 h-3.5" />}
+          <button onClick={() => { navigator.clipboard?.writeText(vpa); setCopied(true) }} className="text-glow inline-flex items-center justify-center w-9 h-9 -m-2" aria-label="Copy VPA">
+            {copied ? <Check className="w-4 h-4 text-mint" /> : <Copy className="w-4 h-4" />}
           </button>
         </span>
       </div>
@@ -752,7 +752,7 @@ function QrPayModal({ app, amount, setQrApp, onDone }) {
       <button onClick={() => { setPaid(true); setTimeout(onDone, 350) }} disabled={paid} className="btn-ghost w-full py-3 text-sm disabled:opacity-60">
         <CheckCircle2 className="w-4 h-4" /> {paid ? 'Completing order…' : 'I already paid'}
       </button>
-      <button onClick={() => setQrApp(null)} className="w-full py-2 text-xs text-mist hover:text-ink-2 mt-2">Cancel</button>
+      <button onClick={() => setQrApp(null)} className="w-full py-2.5 min-h-[44px] text-xs text-mist hover:text-ink-2 mt-2">Cancel</button>
     </>
   )
 }

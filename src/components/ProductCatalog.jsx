@@ -51,7 +51,7 @@ export default function ProductCatalog({ onQuickView, searchResults }) {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => { setFilter('all'); setVisible(PAGE) }}
-              className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all ${filter === 'all' ? 'bg-glow text-glow-ink border-glow shadow-lg shadow-glow/30' : 'bg-glass text-mist border-line hover:text-ink-2'}`}
+              className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-semibold border transition-all ${filter === 'all' ? 'bg-glow text-glow-ink border-glow shadow-lg shadow-glow/30' : 'bg-glass text-mist border-line hover:text-ink-2'}`}
             >
               All
             </button>
@@ -59,7 +59,7 @@ export default function ProductCatalog({ onQuickView, searchResults }) {
               <button
                 key={c.id}
                 onClick={() => { setFilter(c.id); setVisible(PAGE) }}
-                className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all ${filter === c.id ? 'bg-glow text-glow-ink border-glow shadow-lg shadow-glow/30' : 'bg-glass text-mist border-line hover:text-ink-2'}`}
+                className={`px-4 py-2 min-h-[44px] rounded-full text-sm font-semibold border transition-all ${filter === c.id ? 'bg-glow text-glow-ink border-glow shadow-lg shadow-glow/30' : 'bg-glass text-mist border-line hover:text-ink-2'}`}
               >
                 {c.label}
               </button>
@@ -72,7 +72,7 @@ export default function ProductCatalog({ onQuickView, searchResults }) {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="appearance-none pl-4 pr-9 py-2 rounded-full bg-glass border border-line text-sm text-mist focus:text-ink-2 focus:border-glow outline-none cursor-pointer"
+                className="appearance-none pl-4 pr-9 py-2 min-h-[44px] rounded-full bg-glass border border-line text-sm text-mist focus:text-ink-2 focus:border-glow outline-none cursor-pointer"
               >
                 <option value="featured">Featured</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -83,7 +83,7 @@ export default function ProductCatalog({ onQuickView, searchResults }) {
               <ChevronDown className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 text-mist pointer-events-none" />
             </div>
             {/* View toggle */}
-            <div className="hidden sm:flex rounded-full border border-line overflow-hidden">
+            <div className="flex rounded-full border border-line overflow-hidden">
               <button onClick={() => setView('grid')} className={`p-3 min-h-[44px] ${view === 'grid' ? 'bg-glow/20 text-glow' : 'text-mist'}`}><LayoutGrid className="w-4 h-4" /></button>
               <button onClick={() => setView('list')} className={`p-3 min-h-[44px] ${view === 'list' ? 'bg-glow/20 text-glow' : 'text-mist'}`}><List className="w-4 h-4" /></button>
             </div>

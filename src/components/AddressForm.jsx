@@ -77,7 +77,7 @@ export default function AddressForm({ initial, onSubmit, onCancel, submitLabel =
           <div className="flex gap-2">
             {LABELS.map((t) => (
               <button key={t.id} type="button" onClick={() => setA({ ...a, label: t.id })}
-                className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-semibold transition-all ${a.label === t.id ? 'border-glow bg-glow/10 text-glow' : 'border-line bg-panel/60 text-mist hover:border-glow/40'}`}>
+                className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 min-h-[44px] text-xs font-semibold transition-all ${a.label === t.id ? 'border-glow bg-glow/10 text-glow' : 'border-line bg-panel/60 text-mist hover:border-glow/40'}`}>
                 <span>{t.icon}</span> {t.id}
               </button>
             ))}
@@ -116,11 +116,11 @@ export default function AddressForm({ initial, onSubmit, onCancel, submitLabel =
         </div>
       </div>
       <div className="flex items-center gap-2 mt-4">
-        <button onClick={save} disabled={submitBusy} className="btn-glow px-6 py-2.5 text-sm">
+        <button onClick={save} disabled={submitBusy} className="btn-glow px-6 py-2.5 min-h-[44px] text-sm">
           {submitLabel}
         </button>
         {onCancel && (
-          <button onClick={onCancel} className="btn-ghost px-5 py-2.5 text-sm">Cancel</button>
+          <button onClick={onCancel} className="btn-ghost px-5 py-2.5 min-h-[44px] text-sm">Cancel</button>
         )}
       </div>
     </div>

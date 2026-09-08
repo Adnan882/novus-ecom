@@ -124,7 +124,7 @@ export default function AccountPage() {
               <div className="flex items-center justify-between mb-5">
                 <h2 className="font-extrabold text-lg flex items-center gap-2"><User className="w-5 h-5 text-glow" /> Personal Details</h2>
                 {!editProfile && (
-                  <button onClick={() => setEditProfile(true)} className="flex items-center gap-1.5 rounded-xl border border-line px-4 py-2 text-xs font-bold hover:border-glow/50 hover:text-glow transition-all">
+                  <button onClick={() => setEditProfile(true)} className="flex items-center gap-1.5 rounded-xl border border-line px-4 py-2 min-h-[44px] text-xs font-bold hover:border-glow/50 hover:text-glow transition-all">
                     <Pencil className="w-3.5 h-3.5" /> Edit
                   </button>
                 )}
@@ -165,10 +165,10 @@ export default function AccountPage() {
                     <input className="input-dark" placeholder="98765 43210" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })} />
                   </div>
                   <div className="flex gap-2">
-                    <button onClick={saveProfile} disabled={saving} className="btn-glow px-5 py-2.5 text-sm">
+                    <button onClick={saveProfile} disabled={saving} className="btn-glow px-5 py-2.5 min-h-[44px] text-sm">
                       {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Check className="w-4 h-4" /> Save</>}
                     </button>
-                    <button onClick={() => { setEditProfile(false); setForm({ name: profile?.name || '', phone: profile?.phone || '' }) }} className="btn-ghost px-5 py-2.5 text-sm">Cancel</button>
+                    <button onClick={() => { setEditProfile(false); setForm({ name: profile?.name || '', phone: profile?.phone || '' }) }} className="btn-ghost px-5 py-2.5 min-h-[44px] text-sm">Cancel</button>
                   </div>
                 </div>
               )}
@@ -179,7 +179,7 @@ export default function AccountPage() {
               <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                 <h2 className="font-extrabold text-lg flex items-center gap-2"><MapPin className="w-5 h-5 text-glow" /> Saved Addresses</h2>
                 {!adding && editingId === null && (
-                  <button onClick={() => setAdding(true)} className="flex items-center gap-1.5 rounded-xl bg-glow text-glow-ink px-4 py-2 text-xs font-bold hover:bg-glow-hover transition-colors">
+                  <button onClick={() => setAdding(true)} className="flex items-center gap-1.5 rounded-xl bg-glow text-glow-ink px-4 py-2 min-h-[44px] text-xs font-bold hover:bg-glow-hover transition-colors">
                     <Plus className="w-4 h-4" /> Add Address
                   </button>
                 )}
@@ -209,7 +209,7 @@ export default function AccountPage() {
                   <MapPin className="w-8 h-8 text-mist mx-auto mb-2" />
                   <p className="text-sm font-semibold">No saved addresses yet</p>
                   <p className="text-xs text-mist mt-1 mb-4">Add a home or work address and it'll be auto-filled at checkout.</p>
-                  <button onClick={() => setAdding(true)} className="btn-ghost px-4 py-2 text-xs">+ Add your first address</button>
+                  <button onClick={() => setAdding(true)} className="btn-ghost px-4 py-2 min-h-[44px] text-xs">+ Add your first address</button>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -226,14 +226,14 @@ export default function AccountPage() {
                         </div>
                         <div className="flex flex-wrap justify-end gap-1.5 shrink-0">
                           {!a.isDefault && (
-                            <button onClick={() => onDefault(a.id)} title="Set as default" className="w-10 h-10 rounded-xl border border-line flex items-center justify-center text-mist hover:text-glow hover:border-glow/50 transition-colors">
+                            <button onClick={() => onDefault(a.id)} title="Set as default" className="w-10 h-10 min-w-[44px] rounded-xl border border-line flex items-center justify-center text-mist hover:text-glow hover:border-glow/50 transition-colors">
                               <Star className="w-4 h-4" />
                             </button>
                           )}
-                          <button onClick={() => { setEditingId(a.id); setAdding(false) }} title="Edit" className="w-10 h-10 rounded-xl border border-line flex items-center justify-center text-mist hover:text-glow hover:border-glow/50 transition-colors">
+                          <button onClick={() => { setEditingId(a.id); setAdding(false) }} title="Edit" className="w-10 h-10 min-w-[44px] rounded-xl border border-line flex items-center justify-center text-mist hover:text-glow hover:border-glow/50 transition-colors">
                             <Pencil className="w-4 h-4" />
                           </button>
-                          <button onClick={() => onDelete(a.id)} title="Delete" className="w-10 h-10 rounded-xl border border-line flex items-center justify-center text-mist hover:text-ember hover:border-ember transition-colors">
+                          <button onClick={() => onDelete(a.id)} title="Delete" className="w-10 h-10 min-w-[44px] rounded-xl border border-line flex items-center justify-center text-mist hover:text-ember hover:border-ember transition-colors">
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </div>

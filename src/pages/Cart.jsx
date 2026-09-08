@@ -122,8 +122,8 @@ export default function CartPage() {
             <div className="mt-5">
               <p className="text-xs uppercase tracking-wider text-mist font-bold mb-2">Promo code</p>
               <div className="flex gap-2">
-                <input className="input-dark !py-2.5 text-xs" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
-                <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 py-2.5 text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
+                <input className="input-dark !min-h-[44px]" placeholder="NOVUS10" value={promo} onChange={(e) => setPromo(e.target.value)} />
+                <button onClick={applyPromo} className="rounded-xl bg-glow/15 border border-glow/40 text-glow px-4 min-h-[44px] text-xs font-bold hover:bg-glow/25 transition-colors">Apply</button>
               </div>
               {promoError && <p className="text-xs text-ember mt-1.5 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{promoError}</p>}
               {promoApplied && <p className="text-xs text-mint mt-1.5 flex items-center gap-1"><Check className="w-3 h-3" />{promoApplied.code} applied ({promoApplied.percent}% off)</p>}

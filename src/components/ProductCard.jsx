@@ -56,8 +56,9 @@ const ProductCard = memo(function ProductCard({ product, onQuickView, index = 0 
       <div className="absolute top-4 right-4 z-20 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 transition-opacity duration-300">
         <button
           onClick={() => onQuickView(product)}
-          className="w-9 h-9 rounded-xl border border-line bg-deep flex items-center justify-center text-ink-2 hover:border-ink-2 transition-colors"
+          className="w-11 h-11 min-h-[44px] min-w-[44px] rounded-xl border border-line bg-deep flex items-center justify-center text-ink-2 hover:border-ink-2 transition-colors"
           title="Quick view"
+          aria-label="Quick view"
         >
           <Eye className="w-4 h-4" />
         </button>
@@ -103,7 +104,7 @@ const ProductCard = memo(function ProductCard({ product, onQuickView, index = 0 
             transition={SPRING_SNAPPY}
             onClick={quickAdd}
             disabled={adding}
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-glow py-2.5 text-sm font-semibold text-white hover:bg-glow-hover transition-colors"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-glow py-2.5 min-h-[44px] text-sm font-semibold text-white hover:bg-glow-hover transition-colors"
           >
             {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <ShoppingCart className="w-4 h-4" />}
             Add to Cart
@@ -112,7 +113,7 @@ const ProductCard = memo(function ProductCard({ product, onQuickView, index = 0 
             whileTap={{ scale: 0.97 }}
             transition={SPRING_SNAPPY}
             onClick={buyNow}
-            className="inline-flex items-center justify-center rounded-xl border border-line px-3 py-2.5 text-sm font-bold text-ink-2 hover:border-ink-2 hover:text-ink transition-colors"
+            className="inline-flex items-center justify-center rounded-xl border border-line px-3 py-2.5 min-h-[44px] text-sm font-bold text-ink-2 hover:border-ink-2 hover:text-ink transition-colors"
           >
             Buy
           </motion.button>

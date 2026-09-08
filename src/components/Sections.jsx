@@ -350,7 +350,7 @@ export function Footer({ onNavigate, onGo }) {
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                   transition={SPRING_SNAPPY}
-                  className="w-9 h-9 rounded-xl border border-line flex items-center justify-center text-xs text-mist hover:text-ink-2 hover:border-glow cursor-pointer transition-colors"
+                  className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl border border-line flex items-center justify-center text-xs text-mist hover:text-ink-2 hover:border-glow cursor-pointer transition-colors"
                 >
                   {s}
                 </motion.a>
@@ -365,7 +365,7 @@ export function Footer({ onNavigate, onGo }) {
                 whileHover={{ x: 4 }}
                 transition={SPRING_SNAPPY}
                 onClick={() => onNavigate(id)}
-                className="link-underline inline-block text-mist text-sm py-1.5 hover:text-ink-2 transition-colors capitalize"
+                className="link-underline inline-block text-mist text-sm py-2.5 hover:text-ink-2 transition-colors capitalize"
               >
                 {id}
               </motion.button>
@@ -373,9 +373,9 @@ export function Footer({ onNavigate, onGo }) {
           </div>
           <div>
             <h4 className="font-bold text-sm mb-4">Contact</h4>
-            <a href="tel:+919876543210" className="link-underline inline-block text-mist text-sm py-1 hover:text-ink-2 transition-colors">+91 98765 43210</a>
-            <a href="mailto:support@novus.in" className="link-underline inline-block text-mist text-sm py-1 hover:text-ink-2 transition-colors">support@novus.in</a>
-            <p className="text-mist text-sm py-1">Mumbai, Maharashtra, India</p>
+            <a href="tel:+919876543210" className="link-underline block text-mist text-sm py-2.5 hover:text-ink-2 transition-colors">+91 98765 43210</a>
+            <a href="mailto:support@novus.in" className="link-underline block text-mist text-sm py-2.5 hover:text-ink-2 transition-colors">support@novus.in</a>
+            <p className="text-mist text-sm py-2.5">Mumbai, Maharashtra, India</p>
           </div>
           <div>
             <h4 className="font-bold text-sm mb-4">Account</h4>
@@ -390,7 +390,7 @@ export function Footer({ onNavigate, onGo }) {
                 whileHover={{ x: 4 }}
                 transition={SPRING_SNAPPY}
                 onClick={() => onGo?.(l.to)}
-                className="link-underline inline-block text-mist text-sm py-1.5 hover:text-ink-2 transition-colors capitalize"
+                className="link-underline inline-block text-mist text-sm py-2.5 hover:text-ink-2 transition-colors capitalize"
               >
                 {l.label}
               </motion.button>

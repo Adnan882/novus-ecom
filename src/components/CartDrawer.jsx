@@ -51,7 +51,7 @@ export default function CartDrawer({ onCheckout, onBrowse }) {
                   </div>
                   <p className="text-mist font-medium">Your cart is empty</p>
                   <p className="text-xs text-mist/70 mt-1">Add some tech from the collection to get started.</p>
-                  <button onClick={() => { closeCart(); onBrowse?.() }} className="btn-glow px-6 py-2.5 text-sm mt-6">Start shopping</button>
+                  <button onClick={() => { closeCart(); onBrowse?.() }} className="btn-glow px-6 py-2.5 min-h-[44px] text-sm mt-6">Start shopping</button>
                 </div>
               ) : (
                 <div className="space-y-3">

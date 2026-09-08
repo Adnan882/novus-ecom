@@ -96,8 +96,8 @@ export default function BillPage() {
       <div className="max-w-3xl mx-auto">
         {/* Toolbar — hidden when printing */}
         <div className="flex items-center justify-between mb-6 print:hidden">
-          <button onClick={() => navigate('/orders')} className="btn-ghost px-4 py-2 text-sm"><ArrowLeft className="w-4 h-4" /> Back</button>
-          <button onClick={() => window.print()} className="btn-glow px-5 py-2 text-sm"><Printer className="w-4 h-4" /> Print / Save PDF</button>
+          <button onClick={() => navigate('/orders')} className="btn-ghost px-4 py-2 min-h-[44px] text-sm"><ArrowLeft className="w-4 h-4" /> Back</button>
+          <button onClick={() => window.print()} className="btn-glow px-5 py-2 min-h-[44px] text-sm"><Printer className="w-4 h-4" /> Print / Save PDF</button>
         </div>
 
         {/* Invoice */}

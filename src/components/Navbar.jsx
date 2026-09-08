@@ -107,7 +107,7 @@ export default function Navbar({ onSearch, onSection }) {
       >
         <motion.div
           aria-hidden
-          className="absolute left-0 right-0 top-0 -bottom-10"
+          className="absolute left-0 right-0 top-0 -bottom-10 pointer-events-none"
           style={{
             opacity: factor,
             backgroundColor: glassBg,
@@ -131,7 +131,7 @@ export default function Navbar({ onSearch, onSection }) {
             >
               <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Novus" className="w-full h-full object-contain" />
             </motion.span>
-            <span className="text-xl font-extrabold tracking-tight">
+            <span className="hidden min-[400px]:inline text-xl font-extrabold tracking-tight">
               No<span className="gradient-text">vus</span>
             </span>
           </motion.button>

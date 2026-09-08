@@ -133,8 +133,8 @@ export default function OrdersPage() {
                       </div>
 
                       <div className="flex gap-2 flex-wrap">
-                        <Link to="/" className="btn-ghost px-4 py-2 text-xs">Buy again</Link>
-                        <button onClick={() => navigate(`/bill?no=${encodeURIComponent(o.orderNo || o.id)}`)} className="btn-ghost px-4 py-2 text-xs"><FileText className="w-3.5 h-3.5" /> View bill</button>
+                        <Link to="/" className="btn-ghost px-4 py-2 min-h-[44px] text-xs">Buy again</Link>
+                        <button onClick={() => navigate(`/bill?no=${encodeURIComponent(o.orderNo || o.id)}`)} className="btn-ghost px-4 py-2 min-h-[44px] text-xs"><FileText className="w-3.5 h-3.5" /> View bill</button>
                         <span className="text-xs text-mist self-center flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-mint" /> Delivery expected by <b className="text-mint">{etaRange(o.eta, o.createdAt)}</b></span>
                       </div>
                     </div>

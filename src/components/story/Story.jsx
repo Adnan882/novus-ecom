@@ -160,7 +160,7 @@ function Chapter({ c, i, onExplore, progress }) {
               {i === N - 1 && (
                 <button
                   onClick={onExplore}
-                  className="inline-flex items-center gap-2 rounded-xl bg-glow text-glow-ink text-sm font-bold px-5 py-2.5 hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 rounded-xl bg-glow text-glow-ink text-sm font-bold px-5 py-2.5 min-h-[44px] hover:opacity-90 transition-opacity"
                 >
                   Explore the range <ArrowRight className="w-4 h-4" />
                 </button>
@@ -242,6 +242,22 @@ export default function Story({ onExplore }) {
               <span className={`w-2.5 h-2.5 rounded-full border transition-all ${active === i ? 'bg-glow border-glow' : 'bg-transparent border-mist/40 group-hover:border-glow'}`} />
             </button>
           ))}
+        </div>
+
+        {/* Mobile chapter dots */}
+        <div className="lg:hidden absolute bottom-5 inset-x-0 z-40 flex items-center justify-center gap-2 pointer-events-none">
+          <div className="lens rounded-full px-3 py-2 flex items-center gap-1 pointer-events-auto">
+            {CH.map((c, i) => (
+              <button
+                key={c.no}
+                aria-label={`Jump to chapter ${c.no}`}
+                onClick={() => jump(i)}
+                className={`w-9 h-9 flex items-center justify-center ${active === i ? 'text-glow' : 'text-mist'}`}
+              >
+                <span className={`block rounded-full transition-all ${active === i ? 'w-2 h-2 bg-glow' : 'w-1.5 h-1.5 bg-mist/50'}`} />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

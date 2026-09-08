@@ -195,7 +195,7 @@ export default function Hero({ onExplore }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="absolute -top-3 right-0 sm:right-6 rounded-2xl border border-line bg-deep px-4 py-2.5 max-w-[calc(100%-1.5rem)]"
+              className="absolute -top-3 right-0 sm:right-6 rounded-2xl border border-line bg-deep px-4 py-2.5 max-w-[calc(100%-1.5rem)] pointer-events-none"
             >
               <p className="text-[11px] text-mist uppercase tracking-wider">{active.name.replace('Clone ', '')}</p>
               <p className="text-lg font-extrabold flex items-baseline gap-2">

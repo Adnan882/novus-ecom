@@ -83,6 +83,28 @@
   ::selection {
     background: rgb(var(--tv-glow) / 0.25);
   }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ---------------- Mobile friendly ---------------- */
+/* 16px inputs on touch devices stop iOS double-tap zoom-on-focus */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  button,
+  a,
+  [role='button'],
+  select,
+  input,
+  textarea {
+    touch-action: manipulation;
+  }
 }
 
 /* ---------------- Minimal surfaces ---------------- */
