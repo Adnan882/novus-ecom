@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
 import { ArrowRight, FlaskConical, Gem, PackageCheck, Ruler, ShieldCheck, Cpu } from 'lucide-react'
 import ProductImage from '../ProductImage'
 import { PRODUCTS } from '../../data/products'
@@ -74,6 +74,29 @@ const CH = [
 ]
 
 const N = CH.length
+
+function FlipDigit({ d, index }) {
+  return (
+    <div
+      className="relative w-12 h-14 sm:w-16 sm:h-20 flex items-center justify-center"
+      style={{ perspective: 220 }}
+    >
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={d}
+          initial={{ opacity: 0, rotateX: -90, y: -10 }}
+          animate={{ opacity: 1, rotateX: 0, y: 0 }}
+          exit={{ opacity: 0, rotateX: 90, y: 10 }}
+          transition={{ duration: 0.55, delay: index * 0.09, ease: [0.32, 0.72, 0, 1] }}
+          className="absolute inset-0 flex items-center justify-center font-mono font-black text-5xl sm:text-7xl md:text-8xl text-ink"
+          style={{ transformStyle: 'preserve-3d', transformOrigin: '50% 50%', backfaceVisibility: 'hidden' }}
+        >
+          {d}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  )
+}
 
 function Chapter({ c, i, onExplore, setRef }) {
   const ref = useRef()
@@ -166,16 +189,16 @@ export default function Story({ onExplore }) {
 
       {/* Pinned stage */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-        {/* Chapter number + label — centered on screen */}
+        {/* Chapter number + label — centered on screen, flip-clock digits */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
-          <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="relative">
-            <span className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
-              {CH[active]?.kicker}
-            </span>
-            <span className="block font-mono font-black leading-none mt-2 text-5xl sm:text-7xl md:text-8xl text-ink">
-              {CH[active]?.no}
-            </span>
-          </motion.div>
+          <div className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
+            {CH[active]?.kicker}
+          </div>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mt-3">
+            {(CH[active]?.no || '').split('').map((d, i) => (
+              <FlipDigit key={`${CH[active]?.no}-${i}`} d={d} index={i} />
+            ))}
+          </div>
         </div>
 
         {/* fades for navbar readability */}
