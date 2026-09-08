@@ -102,7 +102,7 @@ function Chapter({ c, i, onExplore, setRef }) {
           style={{ opacity: imgOpacity, x: imgX, rotate: imgRotate }}
           className={`absolute top-1/2 -translate-y-1/2 hidden lg:flex items-center justify-center ${right ? 'lg:left-[6%]' : 'lg:right-[6%]'}`}
         >
-          <div className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
+          <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
             <ProductImage product={product} className="w-full h-full object-contain" />
           </div>
         </motion.div>
@@ -166,7 +166,7 @@ export default function Story({ onExplore }) {
 
       {/* Pinned stage */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-        <div className="relative w-full max-w-5xl mx-auto px-6 grid lg:grid-cols-2 items-center gap-6">
+        <div className="relative w-full max-w-5xl mx-auto px-6">
           {/* Left — chapter number + label */}
           <div className="relative lg:pl-4">
             <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }} className="relative">
@@ -180,13 +180,6 @@ export default function Story({ onExplore }) {
                 {CH[active]?.title}
               </p>
             </motion.div>
-          </div>
-
-          {/* Right — product */}
-          <div className="hidden md:flex items-center justify-center">
-            <div className="w-60 h-60 sm:w-72 sm:h-72 rounded-3xl bg-card border border-line p-6 flex items-center justify-center transition-colors duration-300">
-              <ProductImage product={PRODUCTS.find((p) => p.id === 'ap-pro-max')} className="w-full h-full object-contain" />
-            </div>
           </div>
         </div>
 
