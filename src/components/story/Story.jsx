@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
-import { ArrowRight, BadgeCheck, FlaskConical, Gem, PackageCheck, Ruler, ShieldCheck, Cpu } from 'lucide-react'
+import { ArrowRight, FlaskConical, Gem, PackageCheck, Ruler, ShieldCheck, Cpu } from 'lucide-react'
 import ProductImage from '../ProductImage'
 import { PRODUCTS } from '../../data/products'
 
@@ -71,17 +71,6 @@ const CH = [
     accent: 'bg-glow/10 border-glow/30 text-glow',
     hex: 'rgb(var(--tv-glow))',
   },
-  {
-    no: '07',
-    kicker: 'The Novus Promise',
-    title: 'Covered like a flagship',
-    body: 'One-year replacement warranty, instant WhatsApp support and a lifetime firmware promise. If it ever lets go, we make it right — no questions, no courier theatre.',
-    icon: BadgeCheck,
-    product: 'aw-u1',
-    align: 'left',
-    accent: 'bg-gold/10 border-gold/30 text-gold',
-    hex: '#d99a1a',
-  },
 ]
 
 const N = CH.length
@@ -109,18 +98,22 @@ function FlipDigit({ d, index }) {
   )
 }
 
-function Chapter({ c, i, onExplore, setRef }) {
+function Chapter({ c, i, onExplore, setRef, progress }) {
   const ref = useRef()
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const opacity = useTransform(scrollYProgress, [0, 0.18, 0.8, 1], [0, 1, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [60, 0, 0, -60])
   const Icon = c.icon
   const right = c.align === 'right'
   const product = PRODUCTS.find((p) => p.id === c.product)
   const sideX = right ? -1 : 1
-  const imgOpacity = useTransform(scrollYProgress, [0, 0.12, 0.85, 1], [0, 1, 1, 0])
-  const imgX = useTransform(scrollYProgress, [0, 0.28, 0.72, 1], [sideX * 70, 0, 0, sideX * 70])
-  const imgRotate = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [right ? 6 : -6, 0, 0, right ? -6 : 6])
+
+  // Chapter i's slot in section progress — exactly the same window the counter
+  // shows number i, so the text sequences stay in sync with the counter.
+  const a = i / N
+  const b = (i + 1) / N
+  const opacity = useTransform(progress, [a + 0.02, a + 0.06, b - 0.06, b - 0.02], [0, 1, 1, 0])
+  const y = useTransform(progress, [a + 0.02, a + 0.08, b - 0.08, b - 0.02], [48, 0, 0, -48])
+  const imgOpacity = useTransform(progress, [a + 0.03, a + 0.08, b - 0.08, b - 0.03], [0, 1, 1, 0])
+  const imgX = useTransform(progress, [a, a + 0.08, b - 0.08, b], [sideX * 70, 0, 0, sideX * 70])
+  const imgRotate = useTransform(progress, [a, a + 0.08, b - 0.08, b], [right ? 6 : -6, 0, 0, right ? -6 : 6])
 
   return (
     <div
@@ -242,6 +235,7 @@ export default function Story({ onExplore }) {
             c={c}
             i={i}
             onExplore={onExplore}
+            progress={scrollYProgress}
             setRef={(el) => (chapterRefs.current[i] = el)}
           />
         ))}
