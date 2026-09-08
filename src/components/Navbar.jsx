@@ -44,7 +44,7 @@ export default function Navbar({ onSearch, onSection }) {
   const rawFactor = useTransform(scrollY, [0, 180], [0, 1], { clamp: true })
   const factor = useSpring(rawFactor, { stiffness: 140, damping: 24 })
   const blurPx = useTransform(factor, (v) => `blur(${Math.round(30 * v)}px) saturate(180%)`)
-  const tint = useTransform(factor, (v) => Math.round(v * 0.56 * 100) / 100)
+  const tint = useTransform(factor, (v) => Math.round(v * 0.62 * 100) / 100)
   const glassBg = useMotionTemplate`rgb(var(--tv-midnight) / ${tint})`
 
   const [scrolled, setScrolled] = useState(false)
@@ -109,6 +109,16 @@ export default function Navbar({ onSearch, onSection }) {
           aria-hidden
           className="absolute inset-0"
           style={{ backgroundColor: glassBg, backdropFilter: blurPx, WebkitBackdropFilter: blurPx, boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
+        />
+        <motion.div
+          aria-hidden
+          className="absolute -bottom-4 left-0 right-0 h-6 pointer-events-none"
+          style={{
+            opacity: factor,
+            background: 'linear-gradient(to bottom, rgb(var(--tv-line) / 0.3), rgb(var(--tv-line) / 0.05) 45%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)',
+            maskImage: 'linear-gradient(to right, transparent, black 25%, black 75%, transparent)',
+          }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
