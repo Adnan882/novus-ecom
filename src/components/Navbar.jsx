@@ -107,7 +107,7 @@ export default function Navbar({ onSearch, onSection }) {
             className="flex items-center gap-2 shrink-0 group"
           >
             <motion.span
-              className="w-11 h-11 rounded-xl overflow-hidden border border-line shrink-0"
+              className="w-11 h-11 rounded-xl overflow-hidden shrink-0"
             >
               <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Novus" className="w-full h-full object-contain" />
             </motion.span>
