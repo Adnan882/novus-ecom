@@ -198,3 +198,15 @@ html, body {
     scroll-behavior: auto !important;
   }
 }
+/* Zero-gravity float for the story chapter counter */
+@keyframes antigravity {
+  0%, 100% { transform: translate(-50%, calc(-50% + 0px)) rotate(0deg); }
+  25%      { transform: translate(-50%, calc(-50% - 10px)) rotate(-1deg); }
+  50%      { transform: translate(-50%, calc(-50% - 18px)) rotate(1.2deg); }
+  75%      { transform: translate(-50%, calc(-50% - 9px)) rotate(-0.5deg); }
+}
+
+.animate-antigravity {
+  animation: antigravity 6s ease-in-out infinite;
+  will-change: transform;
+}

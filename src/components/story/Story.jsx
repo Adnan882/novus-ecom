@@ -189,8 +189,8 @@ export default function Story({ onExplore }) {
 
       {/* Pinned stage */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-        {/* Chapter number + label — centered on screen, flip-clock digits */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center">
+        {/* Chapter number + label — centered on screen, flip-clock digits, antigravity float */}
+        <div className="absolute left-1/2 top-1/2 z-20 text-center animate-antigravity">
           <div className="font-mono text-[10px] sm:text-xs tracking-[0.3em] uppercase" style={{ color: CH[active]?.hex }}>
             {CH[active]?.kicker}
           </div>
