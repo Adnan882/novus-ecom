@@ -43,8 +43,8 @@ export default function Navbar({ onSearch, onSection }) {
   const { scrollY } = useScroll()
   const rawFactor = useTransform(scrollY, [0, 180], [0, 1], { clamp: true })
   const factor = useSpring(rawFactor, { stiffness: 140, damping: 24 })
-  const blurPx = useTransform(factor, (v) => `blur(${Math.round(18 * v)}px)`)
-  const tint = useTransform(factor, (v) => Math.min(1, v))
+  const blurPx = useTransform(factor, (v) => `blur(${Math.round(30 * v)}px) saturate(180%)`)
+  const tint = useTransform(factor, (v) => Math.round(v * 0.62 * 100) / 100)
   const glassBg = useMotionTemplate`rgb(var(--tv-midnight) / ${tint})`
 
   const [scrolled, setScrolled] = useState(false)
@@ -103,12 +103,12 @@ export default function Navbar({ onSearch, onSection }) {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ ...SPRING_GENTLE, delay: 0.1 }}
-        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'border-white/5 py-3' : 'bg-transparent border-transparent py-5'}`}
+        className={`relative border-b transition-all duration-500 ease-out ${scrolled ? 'py-3' : 'bg-transparent border-transparent py-5'}`}
       >
         <motion.div
           aria-hidden
-          className="absolute inset-0"
-          style={{ backgroundColor: glassBg, backdropFilter: blurPx, WebkitBackdropFilter: blurPx }}
+          className="absolute inset-0 border-b border-white/5"
+          style={{ backgroundColor: glassBg, backdropFilter: blurPx, WebkitBackdropFilter: blurPx, boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)' }}
         />
         <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-3">
           {/* Logo */}
