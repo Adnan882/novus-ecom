@@ -180,7 +180,6 @@ export default function Story({ onExplore }) {
             </span>
           </motion.div>
         </div>
-      </div>
 
         {/* fades for navbar readability */}
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-midnight/90 to-transparent pointer-events-none transition-colors duration-300" />
