@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
-import { ArrowRight, FlaskConical, Gem, PackageCheck, Ruler, ShieldCheck, Cpu } from 'lucide-react'
+import { ArrowRight, BadgeCheck, FlaskConical, Gem, PackageCheck, Ruler, ShieldCheck, Cpu } from 'lucide-react'
 import ProductImage from '../ProductImage'
 import { PRODUCTS } from '../../data/products'
 
@@ -70,6 +70,17 @@ const CH = [
     align: 'right',
     accent: 'bg-glow/10 border-glow/30 text-glow',
     hex: 'rgb(var(--tv-glow))',
+  },
+  {
+    no: '07',
+    kicker: 'The Novus Promise',
+    title: 'Covered like a flagship',
+    body: 'One-year replacement warranty, instant WhatsApp support and a lifetime firmware promise. If it ever lets go, we make it right — no questions, no courier theatre.',
+    icon: BadgeCheck,
+    product: 'aw-u1',
+    align: 'left',
+    accent: 'bg-gold/10 border-gold/30 text-gold',
+    hex: '#d99a1a',
   },
 ]
 
