@@ -100,7 +100,7 @@ export const PRODUCTS = [
     model: 'airpodsmax',
     image: img('airpods-max.jpg'),
     tagline: 'Over-ear premium at a fraction of the price',
-    price: 3199,
+    price: 1,
     mrp: 6499,
     rating: 4.9,
     reviews: 876,
