@@ -9,24 +9,6 @@ const img = (p) => `${import.meta.env.BASE_URL}images/${p}`
 
 export const PRODUCTS = [
   {
-    id: 'demo-1',
-    slug: 'demo-test-product',
-    name: 'Demo Test Product',
-    category: 'accessories',
-    model: 'airtag',
-    image: img('magsafe.jpg'),
-    tagline: '₹1 demo product for testing payments',
-    price: 1,
-    mrp: 99,
-    rating: 4.0,
-    reviews: 1,
-    badge: 'Test',
-    hot: true,
-    features: ['Test Product', '₹1 Payment', 'For Demo Only'],
-    colors: [{ name: 'White', hex: '#f5f5f7' }],
-    stock: 999,
-  },
-  {
     id: 'ap-pro-2',
     slug: 'clone-airpods-pro-2',
     name: 'AirPods Pro 2',
